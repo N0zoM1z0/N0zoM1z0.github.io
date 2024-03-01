@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Web | ULGANOY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="web相关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web">
+<meta property="og:url" content="http://n0zom1z0.github.io/Web/index.html">
+<meta property="og:site_name" content="ULGANOY">
+<meta property="og:description" content="web相关">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2023/12/28/fWlxyDicHbNvFMQ.png">
+<meta property="article:published_time" content="2023-12-28T00:54:41.000Z">
+<meta property="article:modified_time" content="2024-02-26T05:53:47.647Z">
+<meta property="article:author" content="ULGANOY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/12/28/fWlxyDicHbNvFMQ.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ULGANOY" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ULGANOY</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Kitauji Fightooooo!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://N0zoM1z0.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Web" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/Web/" class="article-date">
+  <time class="dt-published" datetime="2023-12-28T00:54:41.000Z" itemprop="datePublished">2023-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/CTF-Web/">CTF-Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Web
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>web相关</p>
+<span id="more"></span>
+
+<!-- toc -->
+
+<h1 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h1><p><img src="https://s2.loli.net/2023/12/28/fWlxyDicHbNvFMQ.png" alt="img"></p>
+<p>直接看<a href="https://www.cnblogs.com/bmjoker/p/13508538.html" target="_blank">这篇</a></p>
+<h2 id="自动化工具"><a href="#自动化工具" class="headerlink" title="自动化工具"></a>自动化工具</h2><p>tmpmap很不兼容高版本python 所以用sstimap</p>
+<p>虚拟机ubuntu启动(有些库是基于Debian的…)</p>
+<p>-u –os-shell 一把梭</p>
+<h2 id="ejs"><a href="#ejs" class="headerlink" title="ejs"></a>ejs</h2><p><code>&lt;%- global.process.mainModule.require(&#39;child_process&#39;).execSync(&#39;tac /f*&#39;) %&gt;</code></p>
+<h1 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h1><h2 id="文件读取漏洞的后利用姿势"><a href="#文件读取漏洞的后利用姿势" class="headerlink" title="文件读取漏洞的后利用姿势"></a>文件读取漏洞的后利用姿势</h2><p>详细: <a href="https://www.freebuf.com/articles/web/337617.html" target="_blank">这篇</a></p>
+<h3 id="Java-c0-ae-安全模式绕过"><a href="#Java-c0-ae-安全模式绕过" class="headerlink" title="Java %c0%ae 安全模式绕过"></a>Java %c0%ae 安全模式绕过</h3><p>在Java端”%c0%ae”解析为”\uC0AE”，最后转义为ASCCII低字符-“.”。通过这个方法可以绕过目录保护读取包配置文件信息</p>
+<h1 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h1><p>参考文章: </p>
+<ol>
+<li><a href="https://blog.csdn.net/bmth666/article/details/104737025" target="_blank">+</a></li>
+</ol>
+<h2 id="public-protected-private"><a href="#public-protected-private" class="headerlink" title="public&#x2F;protected&#x2F;private"></a>public&#x2F;protected&#x2F;private</h2><p>public: 直接反序列化<br>protected: \x00+*+\x00+变量名<br>private: \x00+类名+\x00+变量名</p>
+<h2 id="绕过正则匹配"><a href="#绕过正则匹配" class="headerlink" title="绕过正则匹配"></a>绕过正则匹配</h2><p>在对象前添加 “+”  然后urlencode一下(不然+会被解析为空格)</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;baby&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;file&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;flag.php&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+<p>改为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:+<span class="number">4</span>:<span class="string">&quot;baby&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;file&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;flag.php&quot;</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h2><ol>
+<li>__construct(): 类的构造函数</li>
+<li>__destruct(): 类的析构函数</li>
+<li>__call(): 在对象中调用一个不可访问方法时调用</li>
+<li>__sleep(): 执行serialize()时会先调用这个函数</li>
+<li>__wakeup(): 执行unserialize()时 会先调用这个函数</li>
+<li>__toString(): 类被当作字符串时的回应方法</li>
+<li>__invoke(): 以调用函数的方式调用一个对象时的回应方法</li>
+<li>__get(): 当访问私有属性或者不存在的属性时触发</li>
+</ol>
+<p>具体触发条件直接上php官方手册查即可</p>
+<h3 id="wakeup-绕过-CVE-2016-7124"><a href="#wakeup-绕过-CVE-2016-7124" class="headerlink" title="__wakeup()绕过 CVE-2016-7124"></a>__wakeup()绕过 CVE-2016-7124</h3><p>PHP5 &lt; 5.6.25，PHP7 &lt; 7.0.10 时<br>当序列化字符串中 如果表示对象属性个数的值大于真实属性个数时就会跳过__wakeup()的执行</p>
+<p>比如:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;baby&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;file&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;flag.php&quot;</span>;&#125;</span><br><span class="line">改为</span><br><span class="line">O:<span class="number">4</span>:<span class="string">&quot;baby&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">4</span>:<span class="string">&quot;file&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;flag.php&quot;</span>;&#125;</span><br><span class="line">就可以绕过</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="php-Session"><a href="#php-Session" class="headerlink" title="php Session"></a>php Session</h2><p>学习资料:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/6640?time__1311=n4+xnD0DRDBGitN4q05+bDyGQO40IjNqG8DIxrD&alichlgref=https://cn.bing.com/#toc-10">+</a></li>
+</ol>
+<h2 id="phar反序列化"><a href="#phar反序列化" class="headerlink" title="phar反序列化"></a>phar反序列化</h2><p>学习资料:</p>
+<ol>
+<li><a href="https://paper.seebug.org/680/" target="_blank">+</a></li>
+</ol>
+<h2 id="php-GC垃圾回收机制-绕过"><a href="#php-GC垃圾回收机制-绕过" class="headerlink" title="php GC垃圾回收机制 绕过"></a>php GC垃圾回收机制 绕过</h2><p>用来提前触发__destruct方法</p>
+<p>学习资料:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/11843?time__1311=mqmx0DBD9DyD2QKD/Qb5uDfrxAoT7/7DIrD&alichlgref=https://www.bing.com/"> + </a></li>
+</ol>
+<h2 id="python-pickle"><a href="#python-pickle" class="headerlink" title="python pickle"></a>python pickle</h2><p>学习资料:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7436?time__1311=n4+xnD0G0=it0Q6qGNnmjiG88YG=eNddzK4D&alichlgref=https://www.bing.com/">+</a></li>
+</ol>
+<h1 id="RCE"><a href="#RCE" class="headerlink" title="RCE"></a>RCE</h1><h2 id="RCE-waf-绕过"><a href="#RCE-waf-绕过" class="headerlink" title="RCE waf 绕过"></a>RCE waf 绕过</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/330736.html">+</a></li>
+</ol>
+<h1 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h1><p>学习资料:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://www.52hertz.tech/2020/02/13/xxe_basic/">+</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU1ODg3NTMyMQ==&mid=2247489349&idx=1&sn=ab435be65bc6c35a21ea4bd040693d8c&source=41&poc_token=HHXrq2WjeTzuOA0hGXCzS8aYI-9nCq5r3AIrbsRu">++</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/slim3-xxe.html">+++</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n0zom1z0.github.io/Web/" data-id="clt7z1kt4000uq4th8kwygv9w" data-title="Web" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Web-Other/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Web-Other
+        
+      </div>
+    </a>
+  
+  
+    <a href="/Reversing-Kr%E7%BB%83%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Reversing.Kr练习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Crypto/">CTF-Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Re/">CTF-Re</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Reverse/">CTF-Reverse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WP/">CTF-WP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF-Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReverseEngineering/">ReverseEngineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WHK/">WHK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/osu/">osu</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Crypto/" rel="tag">CTF-Crypto</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF-Crypto/" style="font-size: 10px;">CTF-Crypto</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%84%9A%E6%9C%AC/">密码学脚本</a>
+          </li>
+        
+          <li>
+            <a href="/Crypto-Other-2/">Crypto-Other-2</a>
+          </li>
+        
+          <li>
+            <a href="/Hack-The-Box/">Hack-The-Box</a>
+          </li>
+        
+          <li>
+            <a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/">春秋云镜靶场</a>
+          </li>
+        
+          <li>
+            <a href="/VT%E5%A4%84%E7%90%86%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">VT处理器虚拟化技术学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ULGANOY<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

