@@ -1,109 +1,169 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>2023极客大挑战 Crpyto | ULGANOY</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="没参加比赛 跟着其他师傅的博客复现一下其中的一些题目">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="没参加比赛 跟着其他师傅的博客复现一下其中的一些题目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2023极客大挑战 Crpyto">
 <meta property="og:url" content="http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/index.html">
-<meta property="og:site_name" content="ULGANOY">
+<meta property="og:site_name" content="N0zoM1z0">
 <meta property="og:description" content="没参加比赛 跟着其他师傅的博客复现一下其中的一些题目">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/12/03/dTgqRexIQvDsPkJ.png">
 <meta property="article:published_time" content="2023-12-03T07:17:38.000Z">
 <meta property="article:modified_time" content="2023-12-14T07:00:30.713Z">
-<meta property="article:author" content="ULGANOY">
+<meta property="article:author" content="N0zoM1z0">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/12/03/dTgqRexIQvDsPkJ.png">
-  
-    <link rel="alternate" href="/atom.xml" title="ULGANOY" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>2023极客大挑战 Crpyto</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
-  
+    <!-- persian styles -->
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">ULGANOY</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Kitauji Fightooooo!</a>
-        </h2>
-      
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/Complex-RSA/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/Diary/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&text=2023极客大挑战 Crpyto"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&is_video=false&description=2023极客大挑战 Crpyto"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2023极客大挑战 Crpyto&body=Check out this article: http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&name=2023极客大挑战 Crpyto&description=&lt;p&gt;没参加比赛 跟着其他师傅的博客复现一下其中的一些题目&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&t=2023极客大挑战 Crpyto"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://N0zoM1z0.github.io"></form>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OTPTwice"><span class="toc-number">1.</span> <span class="toc-text">OTPTwice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OldAlgorithm"><span class="toc-number">2.</span> <span class="toc-text">OldAlgorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PolyRSA"><span class="toc-number">3.</span> <span class="toc-text">PolyRSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple3DES"><span class="toc-number">4.</span> <span class="toc-text">Simple3DES</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution1"><span class="toc-number">4.1.</span> <span class="toc-text">Solution1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution2"><span class="toc-number">4.2.</span> <span class="toc-text">Solution2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Energetic-Carcano"><span class="toc-number">5.</span> <span class="toc-text">Energetic_Carcano</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Just-need-One"><span class="toc-number">6.</span> <span class="toc-text">Just need One</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fi1nd-th3-x%E2%80%99"><span class="toc-number">7.</span> <span class="toc-text">Fi1nd_th3_x’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Diligent-Liszt"><span class="toc-number">8.</span> <span class="toc-text">Diligent_Liszt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EzComplex"><span class="toc-number">9.</span> <span class="toc-text">EzComplex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Algebra"><span class="toc-number">10.</span> <span class="toc-text">Algebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CardGame"><span class="toc-number">11.</span> <span class="toc-text">CardGame</span></a></li></ol>
       </div>
-    </div>
-  </div>
-</header>
+    
+  </span>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-2023极客大挑战-Crpyto" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/" class="article-date">
-  <time class="dt-published" datetime="2023-12-03T07:17:38.000Z" itemprop="datePublished">2023-12-03</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF-Crypto/">CTF-Crypto</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <div class="content index py4 ">
         
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      2023极客大挑战 Crpyto
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        2023极客大挑战 Crpyto
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">N0zoM1z0</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-03T07:17:38.000Z" class="dt-published" itemprop="datePublished">2023-12-03</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/CTF-Crypto/">CTF-Crypto</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>没参加比赛 跟着其他师傅的博客复现一下其中的一些题目</p>
+  <div class="content e-content" itemprop="articleBody">
+    <p>没参加比赛 跟着其他师傅的博客复现一下其中的一些题目</p>
 <span id="more"></span>
 
 <h2 id="OTPTwice"><a href="#OTPTwice" class="headerlink" title="OTPTwice"></a>OTPTwice</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> xor </span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> urandom </span><br><span class="line">flag = <span class="string">b&quot;SYC&#123;Al3XEI_FAKE_FLAG&#125;&quot;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># step0: key generation &amp; distribution</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">s0</span>(<span class="params">msg</span>): </span><br><span class="line">    k1,k2 = [urandom(<span class="built_in">len</span>(msg)) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="string">&quot;__&quot;</span>] </span><br><span class="line">    <span class="keyword">return</span> k1,k2 </span><br><span class="line"></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># step1: Alice encrypt M, and send it to Bob</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">s1</span>(<span class="params">msg,k1</span>):</span><br><span class="line">    c1 = xor(msg,k1)</span><br><span class="line">    <span class="keyword">return</span> c1 </span><br><span class="line"></span><br><span class="line"><span class="comment"># step2: Bob encrypt c1, and send it to Alice </span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">s2</span>(<span class="params">msg,k2</span>):</span><br><span class="line">    c2 = xor(msg,k2) </span><br><span class="line">    <span class="keyword">return</span> c2 </span><br><span class="line"></span><br><span class="line"><span class="comment"># step3: Alice decrypt c2, and send it to Bob.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">s3</span>(<span class="params">msg,k1</span>):</span><br><span class="line">    c3 = xor(msg,k1)</span><br><span class="line">    <span class="keyword">return</span> c3 </span><br><span class="line"></span><br><span class="line"><span class="comment"># step4: Bob decrypt c3, get M.</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">s4</span>(<span class="params">msg,k2</span>):</span><br><span class="line">    m_ = xor(msg,k2) </span><br><span class="line">    <span class="keyword">return</span> m_ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt</span>(<span class="params">msg,k1,k2</span>): </span><br><span class="line">    c1 = s1(msg,k1) </span><br><span class="line">    c2 = s2(c1,k2) </span><br><span class="line">    c3 = s3(c2,k1)</span><br><span class="line">    m_ = s4(c3,k2) </span><br><span class="line">    <span class="keyword">assert</span> msg == m_</span><br><span class="line"></span><br><span class="line"><span class="comment"># Here&#x27;s what hacker Eve got:</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt_</span>(<span class="params">msg,k1,k2</span>):</span><br><span class="line">    c1 = s1(msg,k1) </span><br><span class="line">    c2 = s2(c1,k2) </span><br><span class="line">    c3 = s3(c2,k1)</span><br><span class="line">    m_ = s4(c3,k2) </span><br><span class="line">    <span class="keyword">if</span> HACK == <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(c1) </span><br><span class="line">        <span class="built_in">print</span>(c2) </span><br><span class="line">        <span class="built_in">print</span>(c3) </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">k1,k2 = s0(flag) </span><br><span class="line">encrypt_(flag,k1,k2) </span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">b&#x27;\xdbi\xab\x8d\xfb0\xd3\xfe!\xf8Xpy\x80w\x8c\x87\xb9&#x27;</span></span><br><span class="line"><span class="string">b&#x27;o\xb0%\xfb\xdb\x0e\r\x04\xde\xd1\x9a\x08w\xda4\x0f\x0cR&#x27;</span></span><br><span class="line"><span class="string">b&#x27;\xe7\x80\xcd\ria\xb2\xca\x89\x1a\x9d;|#3\xf7\xbb\x96&#x27;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -188,155 +248,162 @@
 <h2 id="CardGame"><a href="#CardGame" class="headerlink" title="CardGame"></a>CardGame</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> cards <span class="keyword">import</span> Heart, Spade, Club, Diamond</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choose_card</span>(<span class="params">num</span>):</span><br><span class="line">    x = (num&gt;&gt;<span class="number">5</span>)%<span class="number">4</span></span><br><span class="line">    <span class="keyword">if</span> x == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> (Heart[(num&gt;&gt;<span class="number">6</span>)%<span class="number">13</span>]), <span class="string">&#x27;Heart&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> x%<span class="number">4</span> == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> (Spade[(num&gt;&gt;<span class="number">6</span>)%<span class="number">13</span>]), <span class="string">&#x27;Spade&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> x%<span class="number">4</span> == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> (Diamond[(num&gt;&gt;<span class="number">6</span>)%<span class="number">13</span>]), <span class="string">&#x27;Diamond&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> (Club[(num&gt;&gt;<span class="number">6</span>)%<span class="number">13</span>]), <span class="string">&#x27;Club&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GAME</span>():</span><br><span class="line">    banner = <span class="string">&#x27;&#x27;&#x27; </span></span><br><span class="line"><span class="string"> ####    ##   #####  #####      ####    ##   #    # ###### </span></span><br><span class="line"><span class="string">#    #  #  #  #    # #    #    #    #  #  #  ##  ## #      </span></span><br><span class="line"><span class="string">#      #    # #    # #    #    #      #    # # ## # #####  </span></span><br><span class="line"><span class="string">#      ###### #####  #    #    #  ### ###### #    # #      </span></span><br><span class="line"><span class="string">#    # #    # #   #  #    #    #    # #    # #    # #      </span></span><br><span class="line"><span class="string"> ####  #    # #    # #####      ####  #    # #    # ######</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(banner)</span><br><span class="line"></span><br><span class="line">    meum = <span class="string">&#x27;&#x27;&#x27;option:</span></span><br><span class="line"><span class="string">    1: start game</span></span><br><span class="line"><span class="string">    2: get hint</span></span><br><span class="line"><span class="string">    3: exit</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(meum)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;input your option: &#x27;</span>, end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        your_input = <span class="built_in">input</span>()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> your_input == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">            n = getPrime(<span class="number">36</span>)</span><br><span class="line">            m = getPrime(<span class="number">16</span>)</span><br><span class="line">            c = getPrime(<span class="number">16</span>)</span><br><span class="line">            seed = getPrime(<span class="number">36</span>)</span><br><span class="line">            out = seed</span><br><span class="line">            <span class="built_in">round</span> = <span class="number">0</span></span><br><span class="line">            score = <span class="number">0</span></span><br><span class="line">            res = []</span><br><span class="line">            <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">                <span class="built_in">round</span> += <span class="number">1</span></span><br><span class="line">                res = []</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;round:<span class="subst">&#123;<span class="built_in">round</span>&#125;</span>&#x27;</span>)</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&#x27;score:<span class="subst">&#123;score&#125;</span>&#x27;</span>)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span> (<span class="number">3</span>):</span><br><span class="line">                    out = (out*m+c)%n</span><br><span class="line">                    res.append(out)</span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">round</span> == <span class="number">1</span>:</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line">                        card, suit = choose_card(i)</span><br><span class="line">                        <span class="built_in">print</span>(card)</span><br><span class="line">                <span class="keyword">elif</span> <span class="built_in">round</span>==<span class="number">2</span> <span class="keyword">or</span> <span class="built_in">round</span>==<span class="number">3</span>:  <span class="comment">#gift</span></span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line">                        card, suit = choose_card(i)</span><br><span class="line">                        <span class="built_in">print</span>(card)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">f&#x27;gift: <span class="subst">&#123;res&#125;</span>&#x27;</span>)</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    cards = []</span><br><span class="line">                    suits = []</span><br><span class="line">                    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(res)):</span><br><span class="line">                        card, suit = choose_card(res[i])</span><br><span class="line">                        cards.append(card)</span><br><span class="line">                        suits.append(suit)</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&quot;Give me your guess: (example: Heart_1 Club_2 Diamond_3)&quot;</span>)  </span><br><span class="line">                    <span class="keyword">try</span>:</span><br><span class="line">                        g_1, g_2, g_3 = <span class="built_in">input</span>().split()</span><br><span class="line">                        g_1, g_2, g_3 = g_1.split(<span class="string">&#x27;_&#x27;</span>), g_2.split(<span class="string">&#x27;_&#x27;</span>), g_3.split(<span class="string">&#x27;_&#x27;</span>)</span><br><span class="line">                    <span class="keyword">except</span> ValueError:</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">&quot;Please enter in the correct format.&quot;</span>)</span><br><span class="line">                        <span class="keyword">return</span></span><br><span class="line">                    <span class="keyword">if</span> (g_1[<span class="number">0</span>] == suits[<span class="number">0</span>] <span class="keyword">and</span> g_1[<span class="number">1</span>] == cards[<span class="number">0</span>][<span class="number">15</span>]) <span class="keyword">and</span> (g_2[<span class="number">0</span>] == suits[<span class="number">1</span>] <span class="keyword">and</span> g_2[<span class="number">1</span>] == cards[<span class="number">1</span>][<span class="number">15</span>]) <span class="keyword">and</span> (g_3[<span class="number">0</span>] == suits[<span class="number">2</span>] <span class="keyword">and</span> g_3[<span class="number">1</span>] == cards[<span class="number">2</span>][<span class="number">15</span>]):</span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> cards:</span><br><span class="line">                            <span class="built_in">print</span>(i)</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">&quot;Congratulations! You matched the cards!&quot;</span>)</span><br><span class="line">                        score += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        <span class="keyword">for</span> i <span class="keyword">in</span> cards:</span><br><span class="line">                            <span class="built_in">print</span>(i)</span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">&quot;Try again!&quot;</span>)</span><br><span class="line">                <span class="keyword">if</span> score == <span class="number">50</span>:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&#x27;The flag is your reward!&#x27;</span>)</span><br><span class="line">                    <span class="built_in">print</span>(flag)</span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">continue</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> your_input == <span class="string">&#x27;2&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;Have you ever heard of LCG?&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> your_input == <span class="string">&#x27;3&#x27;</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    GAME()</span><br></pre></td></tr></table></figure>
 <p>没有交互环境<br>注意到选1后的第二三轮会给我们6个LCG中连续的数<br>那么我们就可以恢复LCG的三个系数 从而预测接下来的值<br>注意到这里它要我们给第15个字符(card[x][15])<br>而我们并不知道是多少 但是可以枚举(0-9 AKQJ)<br>只要最后分数达到50分即可</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/" data-id="clt7z1ksp0002q4thfgo2czb5" data-title="2023极客大挑战 Crpyto" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/Complex-RSA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Complex RSA
-        
-      </div>
-    </a>
-  
-  
-    <a href="/Diary/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Diary</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-</section>
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Crypto/">CTF-Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Re/">CTF-Re</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Reverse/">CTF-Reverse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WP/">CTF-WP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF-Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReverseEngineering/">ReverseEngineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WHK/">WHK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/osu/">osu</a></li></ul>
-    </div>
-  </div>
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Crypto/" rel="tag">CTF-Crypto</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/CTF-Crypto/" style="font-size: 10px;">CTF-Crypto</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
+    <div id="nav-footer" style="display: none">
       <ul>
         
-          <li>
-            <a href="/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%84%9A%E6%9C%AC/">密码学脚本</a>
-          </li>
+          <li><a href="/">首页</a></li>
         
-          <li>
-            <a href="/Crypto-Other-2/">Crypto-Other-2</a>
-          </li>
+          <li><a href="/about/">关于</a></li>
         
-          <li>
-            <a href="/Hack-The-Box/">Hack-The-Box</a>
-          </li>
+          <li><a href="/archives/">归档</a></li>
         
-          <li>
-            <a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/">春秋云镜靶场</a>
-          </li>
+          <li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li>
         
-          <li>
-            <a href="/VT%E5%A4%84%E7%90%86%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">VT处理器虚拟化技术学习</a>
-          </li>
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
-  </div>
 
-  
-</aside>
-        
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OTPTwice"><span class="toc-number">1.</span> <span class="toc-text">OTPTwice</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OldAlgorithm"><span class="toc-number">2.</span> <span class="toc-text">OldAlgorithm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PolyRSA"><span class="toc-number">3.</span> <span class="toc-text">PolyRSA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Simple3DES"><span class="toc-number">4.</span> <span class="toc-text">Simple3DES</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution1"><span class="toc-number">4.1.</span> <span class="toc-text">Solution1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution2"><span class="toc-number">4.2.</span> <span class="toc-text">Solution2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Energetic-Carcano"><span class="toc-number">5.</span> <span class="toc-text">Energetic_Carcano</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Just-need-One"><span class="toc-number">6.</span> <span class="toc-text">Just need One</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fi1nd-th3-x%E2%80%99"><span class="toc-number">7.</span> <span class="toc-text">Fi1nd_th3_x’</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Diligent-Liszt"><span class="toc-number">8.</span> <span class="toc-text">Diligent_Liszt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EzComplex"><span class="toc-number">9.</span> <span class="toc-text">EzComplex</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Algebra"><span class="toc-number">10.</span> <span class="toc-text">Algebra</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CardGame"><span class="toc-number">11.</span> <span class="toc-text">CardGame</span></a></li></ol>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2024 ULGANOY<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&text=2023极客大挑战 Crpyto"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&is_video=false&description=2023极客大挑战 Crpyto"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2023极客大挑战 Crpyto&body=Check out this article: http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&title=2023极客大挑战 Crpyto"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&name=2023极客大挑战 Crpyto&description=&lt;p&gt;没参加比赛 跟着其他师傅的博客复现一下其中的一些题目&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/2023%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-Crpyto/&t=2023极客大挑战 Crpyto"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    </div>
 
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
 
   </div>
-</body>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    N0zoM1z0
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":2,"position":"left","width":180,"height":288,"hOffset":110,"vOffset":-20},"mobile":{"show":true}});</script></body>
 </html>

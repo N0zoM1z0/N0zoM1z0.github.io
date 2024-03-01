@@ -1,107 +1,167 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>ISCTF2023 | ULGANOY</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="没有全部记录Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="没有全部记录Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ISCTF2023">
 <meta property="og:url" content="http://n0zom1z0.github.io/ISCTF2023/index.html">
-<meta property="og:site_name" content="ULGANOY">
+<meta property="og:site_name" content="N0zoM1z0">
 <meta property="og:description" content="没有全部记录Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-08T03:45:23.000Z">
 <meta property="article:modified_time" content="2023-12-08T10:09:19.130Z">
-<meta property="article:author" content="ULGANOY">
+<meta property="article:author" content="N0zoM1z0">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="ULGANOY" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>ISCTF2023</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
-  
+    <!-- persian styles -->
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">ULGANOY</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Kitauji Fightooooo!</a>
-        </h2>
-      
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/Reverse-Other/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/12-6-Birthday-For-Ulganoy/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/ISCTF2023/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/ISCTF2023/&text=ISCTF2023"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/ISCTF2023/&is_video=false&description=ISCTF2023"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ISCTF2023&body=Check out this article: http://n0zom1z0.github.io/ISCTF2023/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/ISCTF2023/&name=ISCTF2023&description=&lt;p&gt;没有全部记录&lt;br&gt;Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/ISCTF2023/&t=ISCTF2023"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://N0zoM1z0.github.io"></form>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-rsa"><span class="toc-number">1.1.</span> <span class="toc-text">ez_rsa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyGroup"><span class="toc-number">1.2.</span> <span class="toc-text">babyGroup</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WHERE"><span class="toc-number">2.1.</span> <span class="toc-text">WHERE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-number">3.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#xxx-%E4%B8%8B%E9%9B%AA%E4%BA%86"><span class="toc-number">3.1.</span> <span class="toc-text">xxx 下雪了</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">4.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pwn"><span class="toc-number">5.</span> <span class="toc-text">Pwn</span></a></li></ol>
       </div>
-    </div>
-  </div>
-</header>
+    
+  </span>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-ISCTF2023" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/ISCTF2023/" class="article-date">
-  <time class="dt-published" datetime="2023-12-08T03:45:23.000Z" itemprop="datePublished">2023-12-08</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CTF-WP/">CTF-WP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <div class="content index py4 ">
         
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      ISCTF2023
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        ISCTF2023
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">N0zoM1z0</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-08T03:45:23.000Z" class="dt-published" itemprop="datePublished">2023-12-08</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/CTF-WP/">CTF-WP</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>没有全部记录<br>Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录</p>
+  <div class="content e-content" itemprop="articleBody">
+    <p>没有全部记录<br>Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录</p>
 <span id="more"></span>
 <h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="ez-rsa"><a href="#ez-rsa" class="headerlink" title="ez_rsa"></a>ez_rsa</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag,key</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint,getrandbits</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> factorial <span class="keyword">as</span> factor</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> is_prime <span class="keyword">as</span> is_strongPrime</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> gcd</span><br><span class="line"><span class="keyword">from</span> libnum <span class="keyword">import</span> s2n</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">step1</span>(<span class="params">m</span>):</span><br><span class="line">	p,q = getPrime(<span class="number">1024</span>),getPrime(<span class="number">1024</span>)</span><br><span class="line">	n=p*q</span><br><span class="line">	e=getPrime(<span class="number">512</span>)</span><br><span class="line">	phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">while</span> gcd(e,phi) != <span class="number">1</span>:</span><br><span class="line">		e=getPrime(<span class="number">512</span>)</span><br><span class="line">	d = <span class="built_in">pow</span>(e,-<span class="number">1</span>,phi)</span><br><span class="line">	k = randint(<span class="number">800</span>,<span class="number">1500</span>)</span><br><span class="line">	f = factor(k)</span><br><span class="line">	leak = (<span class="built_in">pow</span>(e, <span class="number">2</span>) + (e*d - <span class="number">1</span>)*f)*getPrime(<span class="number">256</span>) + k</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;n=&#125;</span>&quot;</span>)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;leak=&#125;</span>&quot;</span>)</span><br><span class="line">	e = <span class="number">65537</span></span><br><span class="line">	c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line">	<span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">step2</span>(<span class="params">m</span>):</span><br><span class="line"></span><br><span class="line">	<span class="keyword">assert</span> key &lt; <span class="number">10</span>**<span class="number">9</span></span><br><span class="line">	<span class="keyword">assert</span> (is_prime(key) <span class="keyword">and</span> <span class="keyword">not</span> is_strongPrime(key))</span><br><span class="line"></span><br><span class="line">	p,q = getPrime(<span class="number">512</span>),getPrime(<span class="number">512</span>)</span><br><span class="line">	n=p*q</span><br><span class="line">	leak1 = <span class="built_in">pow</span>(p,q,n) + <span class="built_in">pow</span>(q,p,n)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;n=&#125;</span>&quot;</span>)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;leak1=&#125;</span>&quot;</span>)</span><br><span class="line">	e=<span class="number">0x10001</span></span><br><span class="line">	c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line">	seed = getrandbits(<span class="number">64</span>)</span><br><span class="line">	a = getPrime(<span class="number">256</span>)</span><br><span class="line">	b = getPrime(<span class="number">256</span>)</span><br><span class="line">	leak2 = []</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">		leak2.append(seed := (seed * a + b) % p)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;leak2 = &#125;</span>&quot;</span>)</span><br><span class="line">	seed = (seed * a + b) % p</span><br><span class="line">	base = key ^ seed</span><br><span class="line">	final = []</span><br><span class="line">	<span class="keyword">while</span> c &gt; <span class="number">0</span>:</span><br><span class="line">		final.append(c % base)</span><br><span class="line">		c //= base</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> final</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">is_prime</span>(<span class="params">p</span>):</span><br><span class="line">	check = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">7</span>,<span class="number">11</span>,<span class="number">13</span>,<span class="number">17</span>,<span class="number">19</span>,<span class="number">23</span>,<span class="number">29</span>,<span class="number">31</span>,<span class="number">37</span>,<span class="number">41</span>,<span class="number">43</span>,<span class="number">47</span>,<span class="number">53</span>,<span class="number">59</span>,<span class="number">61</span>,<span class="number">67</span>,<span class="number">71</span>,<span class="number">73</span>,<span class="number">79</span>,<span class="number">83</span>,<span class="number">89</span>,<span class="number">97</span>]</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">all</span>([<span class="built_in">pow</span>(i,p-<span class="number">1</span>,p)==<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> check])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">	<span class="keyword">assert</span> <span class="built_in">len</span>(flag) == <span class="number">2</span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;step1:&quot;</span>)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;c =&quot;</span>,step1(s2n(flag[<span class="number">0</span>])))</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;step2:&quot;</span>)</span><br><span class="line">	<span class="built_in">print</span>(<span class="string">&quot;final =&quot;</span>,step2(s2n(flag[<span class="number">1</span>])))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">	main()</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">step1:</span><br><span class="line">n=<span class="number">11947241219140615237486309604628973391930339499486798714294498785973885463922548820705069266901903036359254530976927762175262118185159625298369758973935607721381080656199430417818042316007700805008489750740972102287526203064312544340176751751266738219862839022892152635044837041435349904947659346174437695051460882295109851494351994498403791853684239883961766735230202016890875913906900424655711952381425165331389205409282026144667620577946333963601349932905443037145145394667138672752796990411249984169798953060016353748467221154507518574580014882822860853751863757579945329482337792853278715658322366578632817369803</span></span><br><span class="line">leak=<span class="number">4825516411405566882589539973300777582630401687252523937619475044718073214792109569356301252345907914527064817796240727881691399437316660502564323688151311441558823720142071322647007043253626474853010585775710666373651910201889816367922377400970334479040370865879692204764210349607801862666059991789964453439198722962928173197103040385999540054988070333338229570681105393323319767364566644771731595597298210924296456293443125736685469259629163687986114207231233692023613120260155832741199446052855856512791809968963821161765216500389495853488545132008219841635172896843241988125093920217328861507191614658581776695350233593334984646128341640512614300048002219790302478025661133721688232990437685571940604588227022076092857294647830142309441330515812342199940466483115991318018705011472671758063610572930560763516803732693572940939851140384123593105367117155740563057395940645038058194280259524467405820813428765139386968927021061208348111646257434870000866555555283176852834141906387086839051793789126474095527358879630274092172435022326207193319806666865704778907868548658370890623182731938070419969709739233504224100413506514936517272134494776127809327563935813198793891897000404156963455000732616317276241867836699641699825594195079194154957636030485909612033254350828892222046169586844737908349421869385194421981553067305581842171364022745759111602699744161574724372962242132415149146766136601016174658042678857388889036814591399168640678928083442174651493660991088328784105160030857387096251561933704301600695757426945716557961698202485226605485682131045560193822624290720243852434254301324766198129736640005205530445739302632191151740246117208267182630330046600955724262084795763080838384593939971523865769318326101179866187596006185138294477350533316908592086441208575935282494961976691089358976722199557082176285926812134290542838960814502829473372780200310674359645482281037654052483716329497333729594792122297988611883754886634452292313599416610842690057657285337854049766320641249317238780428383587602425132767334811708075065922641191109650660427678019567095309270443930385437292172296652003394183918270707887845018685247162812541929998945735270109736669595830167257239265204520272132384023622231518288514767919183916561550558812478144292894132331163501566746036390319663066054892756826660841952717280005731719082266616429646501565960817772663658546555336959754321712751857740551378987853931613973604348308746819562341219749677392565068390386908064199536445684309718116754288299091975226013592388160308117145043236992250577771659408413506586402897189336742792418163003231783947003853396754144599319566763313339145462208172531322682800226151072022731913191728047323245146556315571396082728252085753230639541374982105041248659074695696205654079837224195868428271353983820725017250413714060967825638577327604252122887136259380946072629481202720339169708229866846597577227829317443910036825722430374711816074735238082313198164126791797947010044130222158124667234003098164746100341636238823175289796896896408971518797835906067939914494546110471749352544064300485882179448030898818405400902242119590645639910708635188342567159795613212660990908765619684401061336405049960091659288716162966504703741105477420409053115823924764680153604215949521605456710353305498258615912458036292507652321420277318757146737030628878096962452278346772976364597137682209395761868224382621093921689415088745975049380393255899867417274843474628482169247388041616142896804170033688742622605192409970919836724035274730923747265191248135577704760607590</span></span><br><span class="line">c = <span class="number">4058526944014006069084945174812818814825704864122299028618329411106188952604728150732223145114766938864644072527523082946069975859381918224872075058517683896020489424720005770218969436595364473179601299857281520204212872074837132357469599147175121200219338329188718982224238281009625352190581095607599976922610436817213692622671732783554216636941121695116377777616027462234472833366922829073660312229117800995468022619934881890343086653577149166193139948443894324239522101581089953817527886638425552917578146958961373353776642091545344162923084513872918786615317499139918810812014781753970806739855831453833956364967</span></span><br><span class="line"></span><br><span class="line">step2:</span><br><span class="line">n=<span class="number">138222025039224144545251830624229986468723531196582463907557734108529994926504669875900898789473948111199016914847829105939167293515822413866727879262875702026534563930475309506834431656926222982363543666448736091756871792887144283877167509418070979449484508499296324616988840431116233637168977730122017878289</span></span><br><span class="line">leak1=<span class="number">23535059927033628406212169278224758389583882623183004031205822980722154537430761635153622180505243837027568034322858038302626132200979370182327110682738910</span></span><br><span class="line">leak2 = [<span class="number">362437850887271063413256292444148642949623196635276044583204094265607936120337004605360832421011</span>, <span class="number">1932915843524327487337992118762711929552569713433223514001673251237692307587356544615955431611435994003602897830069566867051943572065473955405337889221398</span>, <span class="number">11222178024143398739150445814520244630341642052876364179793404105841311693968292227072031763726153574031884490677131749512430325919668649359617953965112844</span>, <span class="number">5408933876805830533113961512210040977462510675785228477646978801328722923647434079128879371684477664804744431834418916837956820965870203842552250165916773</span>, <span class="number">1447143741705069323823257922715038721270982554690635708441585728089036094805730054505696492295730683300002193478561819037345041940787115528445592303142510</span>, <span class="number">3707657531268843465369646969917923274507341341483950204025637357600814449263032574496424566705812439915548150679438579110456264431525526309588664326456861</span>, <span class="number">9263925820149827740182684692442727161206242182976684575667062235695526783971703826794731732152445051579616121306722939129265340347908823003172137299057843</span>, <span class="number">207494591333501391015462321304802957885928775185602834554977737560856036337667840127810136802887548047878444936730742505483927963807357904024967768148122</span>, <span class="number">7052936859446617933917872361389151092893299250603966165472023802877016733939957851026719428770748111897050866474067880613419756475700748999497496482278608</span>, <span class="number">1169538791889404037461397919075674424569430764451305755000680272926397357803359328850780774937432248011264334398346178303234064891680342161511829008635621</span>]</span><br><span class="line">final = [<span class="number">2268617516274900905319941795987877533673889507146326516564545408684476960310333170888941124460992562245780101836116975666368936099249664924148379487909122</span>, <span class="number">1445275952377746701088629016221431744592935398639655895336779954310077866709012082302847692239730041591520169244063854849129773530127510048494782550102381</span>, <span class="number">7</span>]</span><br></pre></td></tr></table></figure>
@@ -163,155 +223,162 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./SNOW.EXE -C -p ISCTFZ023 flag.txt</span><br></pre></td></tr></table></figure>
 <p>flag: ISCTF{34da-a87s-sk87-s384-3982-398233}</p>
 <h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://n0zom1z0.github.io/ISCTF2023/" data-id="clt7z1kt2000pq4th2s2v8pva" data-title="ISCTF2023" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/Reverse-Other/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          Reverse-Other
-        
-      </div>
-    </a>
-  
-  
-    <a href="/12-6-Birthday-For-Ulganoy/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">12.6 Birthday-For-Ulganoy</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-</section>
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Crypto/">CTF-Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Re/">CTF-Re</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Reverse/">CTF-Reverse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WP/">CTF-WP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF-Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReverseEngineering/">ReverseEngineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WHK/">WHK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/osu/">osu</a></li></ul>
-    </div>
-  </div>
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Crypto/" rel="tag">CTF-Crypto</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/CTF-Crypto/" style="font-size: 10px;">CTF-Crypto</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
+    <div id="nav-footer" style="display: none">
       <ul>
         
-          <li>
-            <a href="/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%84%9A%E6%9C%AC/">密码学脚本</a>
-          </li>
+          <li><a href="/">首页</a></li>
         
-          <li>
-            <a href="/Crypto-Other-2/">Crypto-Other-2</a>
-          </li>
+          <li><a href="/about/">关于</a></li>
         
-          <li>
-            <a href="/Hack-The-Box/">Hack-The-Box</a>
-          </li>
+          <li><a href="/archives/">归档</a></li>
         
-          <li>
-            <a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/">春秋云镜靶场</a>
-          </li>
+          <li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li>
         
-          <li>
-            <a href="/VT%E5%A4%84%E7%90%86%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">VT处理器虚拟化技术学习</a>
-          </li>
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
-  </div>
 
-  
-</aside>
-        
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Crypto"><span class="toc-number">1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ez-rsa"><span class="toc-number">1.1.</span> <span class="toc-text">ez_rsa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyGroup"><span class="toc-number">1.2.</span> <span class="toc-text">babyGroup</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">2.</span> <span class="toc-text">Reverse</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WHERE"><span class="toc-number">2.1.</span> <span class="toc-text">WHERE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Misc"><span class="toc-number">3.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#xxx-%E4%B8%8B%E9%9B%AA%E4%BA%86"><span class="toc-number">3.1.</span> <span class="toc-text">xxx 下雪了</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">4.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pwn"><span class="toc-number">5.</span> <span class="toc-text">Pwn</span></a></li></ol>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2024 ULGANOY<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/ISCTF2023/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/ISCTF2023/&text=ISCTF2023"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/ISCTF2023/&is_video=false&description=ISCTF2023"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ISCTF2023&body=Check out this article: http://n0zom1z0.github.io/ISCTF2023/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/ISCTF2023/&title=ISCTF2023"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/ISCTF2023/&name=ISCTF2023&description=&lt;p&gt;没有全部记录&lt;br&gt;Crypto和Reverse记录的赛时没做出来的题 其他是作为新手学习记录&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/ISCTF2023/&t=ISCTF2023"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    </div>
 
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
 
   </div>
-</body>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    N0zoM1z0
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":2,"position":"left","width":180,"height":288,"hOffset":110,"vOffset":-20},"mobile":{"show":true}});</script></body>
 </html>

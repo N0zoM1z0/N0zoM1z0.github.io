@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang=zh>
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>逆向工程核心原理-C13-PE文件格式-笔记 | ULGANOY</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="逆向工程核心原理-C13-PE文件格式-笔记">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="逆向工程核心原理-C13-PE文件格式-笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="逆向工程核心原理-C13-PE文件格式-笔记">
 <meta property="og:url" content="http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/index.html">
-<meta property="og:site_name" content="ULGANOY">
+<meta property="og:site_name" content="N0zoM1z0">
 <meta property="og:description" content="逆向工程核心原理-C13-PE文件格式-笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/12/03/IVkU3uvCy9dxPJZ.png">
@@ -24,94 +24,154 @@
 <meta property="og:image" content="https://s2.loli.net/2023/12/04/sgUdRnqeV8HJ9Ic.png">
 <meta property="article:published_time" content="2023-12-03T11:01:53.000Z">
 <meta property="article:modified_time" content="2023-12-04T02:19:42.916Z">
-<meta property="article:author" content="ULGANOY">
+<meta property="article:author" content="N0zoM1z0">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/12/03/IVkU3uvCy9dxPJZ.png">
-  
-    <link rel="alternate" href="/atom.xml" title="ULGANOY" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>逆向工程核心原理-C13-PE文件格式-笔记</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
 <link rel="stylesheet" href="/css/style.css">
 
-  
+    <!-- persian styles -->
     
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
 <meta name="generator" content="Hexo 7.1.1"></head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">ULGANOY</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Kitauji Fightooooo!</a>
-        </h2>
-      
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/osu/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇" href="/Complex-RSA/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&text=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&is_video=false&description=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=逆向工程核心原理-C13-PE文件格式-笔记&body=Check out this article: http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&name=逆向工程核心原理-C13-PE文件格式-笔记&description=&lt;p&gt;逆向工程核心原理-C13-PE文件格式-笔记&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&t=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS 订阅"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="搜索"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://N0zoM1z0.github.io"></form>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#13-1-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">13.1 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-2-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">13.2 PE文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-1-%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">13.2.1 基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-2-VA-RVA"><span class="toc-number">2.2.</span> <span class="toc-text">13.2.2 VA&amp;RVA</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-3-PE%E5%A4%B4"><span class="toc-number">3.</span> <span class="toc-text">13.3 PE头</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-1-DOS%E5%A4%B4"><span class="toc-number">3.1.</span> <span class="toc-text">13.3.1 DOS头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-2-DOS%E5%AD%98%E6%A0%B9"><span class="toc-number">3.2.</span> <span class="toc-text">13.3.2 DOS存根</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-3-NT%E5%A4%B4"><span class="toc-number">3.3.</span> <span class="toc-text">13.3.3 NT头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-4-NT%E5%A4%B4-%E6%96%87%E4%BB%B6%E5%A4%B4"><span class="toc-number">3.4.</span> <span class="toc-text">13.3.4 NT头: 文件头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-5-NT%E5%A4%B4-%E5%8F%AF%E9%80%89%E5%A4%B4"><span class="toc-number">3.5.</span> <span class="toc-text">13.3.5 NT头: 可选头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-6-%E8%8A%82%E5%8C%BA%E5%A4%B4"><span class="toc-number">3.6.</span> <span class="toc-text">13.3.6 节区头</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-4-RVA-to-RAW"><span class="toc-number">4.</span> <span class="toc-text">13.4 RVA to RAW</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-5-IAT"><span class="toc-number">5.</span> <span class="toc-text">13.5 IAT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-1-DLL"><span class="toc-number">5.1.</span> <span class="toc-text">13.5.1 DLL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-2-IMAGE-IMPORT-DECRIPTOR"><span class="toc-number">5.2.</span> <span class="toc-text">13.5.2 IMAGE_IMPORT_DECRIPTOR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-3-%E4%BD%BF%E7%94%A8notepad-exe%E7%BB%83%E4%B9%A0"><span class="toc-number">5.3.</span> <span class="toc-text">13.5.3 使用notepad.exe练习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-6-EAT"><span class="toc-number">6.</span> <span class="toc-text">13.6 EAT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6-1-IMAGE-EXPORT-DIRECTORY"><span class="toc-number">6.1.</span> <span class="toc-text">13.6.1 IMAGE_EXPORT_DIRECTORY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6-2-%E4%BD%BF%E7%94%A8kernel32-dll%E7%BB%83%E4%B9%A0"><span class="toc-number">6.2.</span> <span class="toc-text">13.6.2 使用kernel32.dll练习</span></a></li></ol></li></ol>
       </div>
-    </div>
-  </div>
-</header>
+    
+  </span>
+</div>
 
-      <div class="outer">
-        <section id="main"><article id="post-逆向工程核心原理-C13-PE文件格式-笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/" class="article-date">
-  <time class="dt-published" datetime="2023-12-03T11:01:53.000Z" itemprop="datePublished">2023-12-03</time>
-</a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/ReverseEngineering/">ReverseEngineering</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <div class="content index py4 ">
         
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      逆向工程核心原理-C13-PE文件格式-笔记
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        逆向工程核心原理-C13-PE文件格式-笔记
     </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">N0zoM1z0</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-12-03T11:01:53.000Z" class="dt-published" itemprop="datePublished">2023-12-03</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/ReverseEngineering/">ReverseEngineering</a>
+    </div>
+
+
+      
+
+    </div>
+  </header>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>逆向工程核心原理-C13-PE文件格式-笔记</p>
+  <div class="content e-content" itemprop="articleBody">
+    <p>逆向工程核心原理-C13-PE文件格式-笔记</p>
 <span id="more"></span>
 <p>前几周粗浅看了一遍 由于是电子版 也没留下多大印象<br>最近CTF的re题看着太累了 做一个题挺耗时间的 想着是基础还是不够扎实<br>再者学逆向的目的也不全是CTF 掌握些理论还是很重要的<br>再来重新学一学 写篇笔记记录一下关键点 也启发自己思考</p>
 <h1 id="13-1-介绍"><a href="#13-1-介绍" class="headerlink" title="13.1 介绍"></a>13.1 介绍</h1><p>PE32 &amp; PE+&#x2F;PE32+ 别写PE64 :(闹笑话</p>
@@ -248,155 +308,162 @@
 <hr>
 <p>第一遍看的时候只是过了一遍概念 没有跟着书上一起算RVA-&gt;RAW在winhex中来找对应值 也没有开OD来看<br>实操一遍收获还是挺多的 PE文件格式是重中之重！一定要反复看~！</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/" data-id="clt7z1ktd001oq4thcp3r1s7i" data-title="逆向工程核心原理-C13-PE文件格式-笔记" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/osu/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          osu
-        
-      </div>
-    </a>
-  
-  
-    <a href="/Complex-RSA/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">Complex RSA</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-</section>
+
         
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Crypto/">CTF-Crypto</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Re/">CTF-Re</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Reverse/">CTF-Reverse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-WP/">CTF-WP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/CTF-Web/">CTF-Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/ReverseEngineering/">ReverseEngineering</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WHK/">WHK</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/osu/">osu</a></li></ul>
-    </div>
-  </div>
+          <div id="footer-post-container">
+  <div id="footer-post">
 
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CTF-Crypto/" rel="tag">CTF-Crypto</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/CTF-Crypto/" style="font-size: 10px;">CTF-Crypto</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">十二月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
+    <div id="nav-footer" style="display: none">
       <ul>
         
-          <li>
-            <a href="/%E5%AF%86%E7%A0%81%E5%AD%A6%E8%84%9A%E6%9C%AC/">密码学脚本</a>
-          </li>
+          <li><a href="/">首页</a></li>
         
-          <li>
-            <a href="/Crypto-Other-2/">Crypto-Other-2</a>
-          </li>
+          <li><a href="/about/">关于</a></li>
         
-          <li>
-            <a href="/Hack-The-Box/">Hack-The-Box</a>
-          </li>
+          <li><a href="/archives/">归档</a></li>
         
-          <li>
-            <a href="/%E6%98%A5%E7%A7%8B%E4%BA%91%E9%95%9C%E9%9D%B6%E5%9C%BA/">春秋云镜靶场</a>
-          </li>
+          <li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li>
         
-          <li>
-            <a href="/VT%E5%A4%84%E7%90%86%E5%99%A8%E8%99%9A%E6%8B%9F%E5%8C%96%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/">VT处理器虚拟化技术学习</a>
-          </li>
+          <li><a href="/search/">搜索</a></li>
         
       </ul>
     </div>
-  </div>
 
-  
-</aside>
-        
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#13-1-%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">13.1 介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-2-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">13.2 PE文件格式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-1-%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">13.2.1 基本结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-2-2-VA-RVA"><span class="toc-number">2.2.</span> <span class="toc-text">13.2.2 VA&amp;RVA</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-3-PE%E5%A4%B4"><span class="toc-number">3.</span> <span class="toc-text">13.3 PE头</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-1-DOS%E5%A4%B4"><span class="toc-number">3.1.</span> <span class="toc-text">13.3.1 DOS头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-2-DOS%E5%AD%98%E6%A0%B9"><span class="toc-number">3.2.</span> <span class="toc-text">13.3.2 DOS存根</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-3-NT%E5%A4%B4"><span class="toc-number">3.3.</span> <span class="toc-text">13.3.3 NT头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-4-NT%E5%A4%B4-%E6%96%87%E4%BB%B6%E5%A4%B4"><span class="toc-number">3.4.</span> <span class="toc-text">13.3.4 NT头: 文件头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-5-NT%E5%A4%B4-%E5%8F%AF%E9%80%89%E5%A4%B4"><span class="toc-number">3.5.</span> <span class="toc-text">13.3.5 NT头: 可选头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-3-6-%E8%8A%82%E5%8C%BA%E5%A4%B4"><span class="toc-number">3.6.</span> <span class="toc-text">13.3.6 节区头</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-4-RVA-to-RAW"><span class="toc-number">4.</span> <span class="toc-text">13.4 RVA to RAW</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-5-IAT"><span class="toc-number">5.</span> <span class="toc-text">13.5 IAT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-1-DLL"><span class="toc-number">5.1.</span> <span class="toc-text">13.5.1 DLL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-2-IMAGE-IMPORT-DECRIPTOR"><span class="toc-number">5.2.</span> <span class="toc-text">13.5.2 IMAGE_IMPORT_DECRIPTOR</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-5-3-%E4%BD%BF%E7%94%A8notepad-exe%E7%BB%83%E4%B9%A0"><span class="toc-number">5.3.</span> <span class="toc-text">13.5.3 使用notepad.exe练习</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13-6-EAT"><span class="toc-number">6.</span> <span class="toc-text">13.6 EAT</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6-1-IMAGE-EXPORT-DIRECTORY"><span class="toc-number">6.1.</span> <span class="toc-text">13.6.1 IMAGE_EXPORT_DIRECTORY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-6-2-%E4%BD%BF%E7%94%A8kernel32-dll%E7%BB%83%E4%B9%A0"><span class="toc-number">6.2.</span> <span class="toc-text">13.6.2 使用kernel32.dll练习</span></a></li></ol></li></ol>
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2024 ULGANOY<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
     
 
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&text=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&is_video=false&description=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=逆向工程核心原理-C13-PE文件格式-笔记&body=Check out this article: http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&title=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&name=逆向工程核心原理-C13-PE文件格式-笔记&description=&lt;p&gt;逆向工程核心原理-C13-PE文件格式-笔记&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86-C13-PE%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F-%E7%AC%94%E8%AE%B0/&t=逆向工程核心原理-C13-PE文件格式-笔记"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
 
-<script src="/js/jquery-3.6.4.min.js"></script>
+    </div>
 
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
 
   </div>
-</body>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2024
+    N0zoM1z0
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">首页</a></li><!--
+    --><!--
+      --><li><a href="/about/">关于</a></li><!--
+    --><!--
+      --><li><a href="/archives/">归档</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">项目</a></li><!--
+    --><!--
+      --><li><a href="/search/">搜索</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              本站总访问量<span id="busuanzi_value_site_pv"></span>次
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  本站访客数<span id="busuanzi_value_site_uv"></span>人
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"superSample":2,"position":"left","width":180,"height":288,"hOffset":110,"vOffset":-20},"mobile":{"show":true}});</script></body>
 </html>
