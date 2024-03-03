@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="慢慢磨吧… x32dbg再开一次第一遍熟悉了大概流程 接下来就是逐步完善细节 函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！还有函数层次关系… IDA和x32dbg的base是一样的 互相照着看方便~ 笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了而且版本对了过后跟教程的地址也对的上了！！！ woc 感觉明天一天能逆个十之八九 几个关键结构体FilePa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="万华镜逆向">
+<meta property="og:url" content="http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/index.html">
+<meta property="og:site_name" content="N0zoM1z0">
+<meta property="og:description" content="慢慢磨吧… x32dbg再开一次第一遍熟悉了大概流程 接下来就是逐步完善细节 函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！还有函数层次关系… IDA和x32dbg的base是一样的 互相照着看方便~ 笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了而且版本对了过后跟教程的地址也对的上了！！！ woc 感觉明天一天能逆个十之八九 几个关键结构体FilePa">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-1.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-2.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-3.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-4.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-5.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-6.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-7.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-8.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-9.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-10.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-11.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-12.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-13.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-14.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-15.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-16.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-17.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-18.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-19.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-20.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-21.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-22.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-23.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-24.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-25.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-26.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-27.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-28.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-29.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-30.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-31.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-32.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-33.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-34.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-35.png">
+<meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-36.png">
+<meta property="og:image" content="http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/images/flow.png">
+<meta property="article:published_time" content="2024-03-03T06:48:48.000Z">
+<meta property="article:modified_time" content="2024-03-03T06:49:09.206Z">
+<meta property="article:author" content="N0zoM1z0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>万华镜逆向</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a href="/about/">About</a></li><!--
+     --><!--
+       --><li><a href="/archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">Projects</a></li><!--
+     --><!--
+       --><li><a href="/search/">Search</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/%E4%B8%87%E5%8D%8E%E9%95%9C%E9%80%86%E5%90%91/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&text=万华镜逆向"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&is_video=false&description=万华镜逆向"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=万华镜逆向&body=Check out this article: http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&name=万华镜逆向&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&t=万华镜逆向"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%85%B3%E9%94%AE%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.</span> <span class="toc-text">几个关键结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FilePackVer"><span class="toc-number">1.1.</span> <span class="toc-text">FilePackVer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashData"><span class="toc-number">1.2.</span> <span class="toc-text">HashData</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashVer"><span class="toc-number">1.3.</span> <span class="toc-text">HashVer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decrypt2DataHead"><span class="toc-number">1.4.</span> <span class="toc-text">Decrypt2DataHead</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileEntry"><span class="toc-number">1.5.</span> <span class="toc-text">FileEntry</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">流程梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FilePack"><span class="toc-number">2.1.</span> <span class="toc-text">FilePack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.1.</span> <span class="toc-text">文件读取初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%A7%A3%E5%AF%86"><span class="toc-number">2.1.2.</span> <span class="toc-text">文件解密</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        万华镜逆向
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">N0zoM1z0</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2024-03-03T06:48:48.000Z" class="dt-published" itemprop="datePublished">2024-03-03</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <p>慢慢磨吧… x32dbg再开一次<br>第一遍熟悉了大概流程 接下来就是逐步完善细节</p>
+<p>函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！<br>还有函数层次关系…</p>
+<p>IDA和x32dbg的base是一样的 互相照着看方便~</p>
+<p>笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了<br>而且版本对了过后跟教程的地址也对的上了！！！ woc 感觉明天一天能逆个十之八九</p>
+<h1 id="几个关键结构体"><a href="#几个关键结构体" class="headerlink" title="几个关键结构体"></a>几个关键结构体</h1><h2 id="FilePackVer"><a href="#FilePackVer" class="headerlink" title="FilePackVer"></a>FilePackVer</h2><p>地址:<br>结构:<br>46 69 6C 65 50 61 63 6B 56 65 72 33 2E 31 00 00<br>12 00 00 00 35 01 4D 02 00 00 00 00</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FilePack</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x10</span>];</span><br><span class="line">    DWORD size;</span><br><span class="line">    QWORD EntryPoint;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HashData"><a href="#HashData" class="headerlink" title="HashData"></a>HashData</h2><p>结构:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HashData</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x20</span>]; <span class="comment">//8hr...</span></span><br><span class="line">    DWORD offset; <span class="comment">// 028D</span></span><br><span class="line">    <span class="type">char</span> data[<span class="number">0x100</span>]; <span class="comment">//256字节数据</span></span><br><span class="line">    DWORD unk; <span class="comment">//先前检验data后一个字节 &lt;0||&gt;8就设置为0</span></span><br><span class="line">    <span class="type">char</span> Blank[<span class="number">0x2F8</span>] <span class="comment">//空字节占位</span></span><br><span class="line">    FilePack filepack; <span class="comment">// FilePack结构体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="HashVer"><a href="#HashVer" class="headerlink" title="HashVer"></a>HashVer</h2><p>地址: 0296C5B0<br>结构:<br>48 61 73 68 56 65 72 31 2E 34 00 00 00 00 00 00<br>00 01 00 00 12 00 00 00 48 00 00 00 49 02 00 00<br>01 00 00 00 04 00 00 00 00 00 00 00 00 00 00 00<br>00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00<br>00 00 00 00 BE 77 EB 74 8E 27 A8 8B A1 45 8E A6</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HashVer</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x10</span>]; <span class="comment">// HashVer1.4</span></span><br><span class="line">    DWORD table_size;  <span class="comment">// 100h 可能是表的大小???</span></span><br><span class="line">    DWORD file_cnt; <span class="comment">// 12h</span></span><br><span class="line">    DWORD unk; <span class="comment">// 48h</span></span><br><span class="line">    DWORD dataSize; <span class="comment">// 249h</span></span><br><span class="line">    DWORD signal; <span class="comment">// 标志位 1 则decrypt2</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="type">char</span> data[<span class="number">0x249</span>]; <span class="comment">// 加密的数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Decrypt2DataHead"><a href="#Decrypt2DataHead" class="headerlink" title="Decrypt2DataHead"></a>Decrypt2DataHead</h2><p>地址: 028D8120<br>结构:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Decrypt2DataHead</span>&#123;</span><br><span class="line">    DWORD sign; <span class="comment">//FF435031</span></span><br><span class="line">    DWORD isWord; <span class="comment">// 1:unsigned __int16</span></span><br><span class="line">    DWORD size; <span class="comment">// 922h</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="FileEntry"><a href="#FileEntry" class="headerlink" title="FileEntry"></a>FileEntry</h2><p>结构:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FileEntry</span>&#123;</span><br><span class="line">    QWORD offset; <span class="comment">// DWORD2:DWORD1</span></span><br><span class="line">    DWORD size;</span><br><span class="line">    DWORD decrypted_size; <span class="comment">// 解密后的size</span></span><br><span class="line">    DWORD isCompressed; <span class="comment">// 0/1 标志位</span></span><br><span class="line">    DWORD unk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h1><h2 id="FilePack"><a href="#FilePack" class="headerlink" title="FilePack"></a>FilePack</h2><p><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image.png" alt="img"><br>注意把 setfilepointer打开!!! 这里设置文件指针是设置源文件的 也就是data0.pack的地址<br>看日志</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设置文件指针  句柄:370 偏移量:00  基准:2</span><br><span class="line">设置文件指针  句柄:370 偏移量:00  基准:0</span><br><span class="line">设置文件指针  句柄:370 偏移量:024D0DE0  基准:0</span><br><span class="line">读取文件:  句柄:370 缓冲:19FAF7 字节数:1C</span><br></pre></td></tr></table></figure>
+
+<p>读取的就是文件最末的0x1C字节数据<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-1.png" alt="img"><br>结合前面走弯路逆错文件的经验 可以分析出大致结构<br>开头的是<code>FilePack</code>的签名 后面<code>12 00 00 00</code> 应该是size之类的<br>然后的 <code>35 01 4D 02</code> 跟右边的offset很像 所以应该是某个入口点的指针 最后一个DWORD的0不知道什么含义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FilePack</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x10</span>]; <span class="comment">// version</span></span><br><span class="line">    DWORD size; <span class="comment">// ? unsure of which</span></span><br><span class="line">    DWORD EntryAddress; <span class="comment">// probably</span></span><br><span class="line">    DOWRD unknown; <span class="comment">// 0?</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回x32dbg 跳出这个函数 把上下的函数借助IDA写上标签便于识别<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-2.png" alt="img"><br>注意到取了前0x10 来验签</p>
+<h3 id="文件读取初始化"><a href="#文件读取初始化" class="headerlink" title="文件读取初始化"></a>文件读取初始化</h3><p>步进文件读取初始化的函数里<br>IDA可以很清楚的看清函数结构 关注SetPoint的日志<br><code>设置文件指针  句柄:370 偏移量:024D09BC  基准:0</code><br>然后后面Read 继续看日志<br><code>读取文件:  句柄:370 缓冲:19F684 字节数:440</code><br>跟踪出来发现确实从data0.pack <code>024D09BC</code>处读取了440(0x124)字节数据<br>其实往上翻翻可以发现这个在一个开头为 <code>HashVer1.4</code>的结构体的最末</p>
+<p>Read过后做了一个比较奇怪的check: 检查检查结尾后的第一个byte是否<code>&gt;=0 &lt;=8</code> 若否就置为0<br>然后取eax:起始位置+24h 复制了0x100的数据到<code>[ecx+ebx+0x54]</code>的内存<br>后面就开始有计算hash和decrypt的了 结合IDA和动调<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-3.png" alt="img"><br>然后就是取0x20字节转unicode后与 <code>8hr48uky,8ugi8ewra4g8d5vbf5hb5s6</code>对比<br>其中关于Hash的计算以及decrypt的算法IDA一目了然 不需要过多深入的分析 解密时IDA开一个AutoComment照着XMM指令集写即可<br>可能其中会涉及到一些间接调用之类的 动调找也比较好找</p>
+<p>这里发现只需要进入decrypt动调一些值即可<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-4.png" alt="img"><br>这里一个是长度 另一个就是先前计算得到的hash值 <code>0658D1A0</code><br>其实和先前的hash有一点点小区别? 动调得到的hash函数返回eax是 <code>D658D1A0</code><br>这样初始的 <code>*(_DWORD *)(a1 + 8)</code>和 <code>*(_DWORD *)(a1 - 4)</code>就得到了<br>还有一个 <code>*(__m64 **)(a1 - 8)</code> 动调发现是一个指向先前读取440字节数据的指针 也就是我们的解密源数据<br>然后取了0x20来解密<br>解出来的就是 <code>8hrxxx</code> 然后转unicode 验签</p>
+<p>然后进行了一大堆赋值操作 注意细看<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-5.png" alt="img"><br>结合cdq我们可以知道 <code>FilePack</code>里面的Entry应该是QWORD类型 而且只有三个成员<br>所以可以写出<code>FilePack</code>结构</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FilePack</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x10</span>];</span><br><span class="line">    DWORD size;</span><br><span class="line">    QWORD EntryPoint;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后又开始设置文件指针<br><code>设置文件指针  句柄:35C 偏移量:024D072F  基准:0</code><br>指向的正是data0中的HashVer结构体<br>然后调用CopyFrom 接着又构造了一个类<br>然后看日志发现 <code>读取文件:  句柄:35C 缓冲:296C5B0 字节数:28D</code><br>查看对应内存<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-6.png" alt="img"><br>所以前面从data0复制HashVer到内存中</p>
+<p>现在来关注之前取出的440字节的数据 不妨称作 HashData 因为Hash解密出一个签名<br>然后有个很关键的是签名后的第一个DWORD: 028D 是后面计算地址的offset</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HashData</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x20</span>]; <span class="comment">//8hr...</span></span><br><span class="line">    DWORD offset; <span class="comment">// 028D</span></span><br><span class="line">    <span class="type">char</span> data[<span class="number">0x100</span>]; <span class="comment">//256字节数据</span></span><br><span class="line">    DWORD unk; <span class="comment">//先前检验data后一个字节 &lt;0||&gt;8就设置为0</span></span><br><span class="line">    <span class="type">char</span> Blank[<span class="number">0x2F8</span>] <span class="comment">//空字节占位</span></span><br><span class="line">    FilePack filepack; <span class="comment">// FilePack结构体</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>关注一下怎么通过 HashData找到HashVer的<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-7.png" alt="img"><br>可以看到先是取出offset 028D 然后用HashData的地址去索引HashVer</p>
+<p>接下来关注对HashVer结构体作了什么操作<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-8.png" alt="img"><br>前面构造的类的指针是指向<code>HashVer</code>开头 所以可以确定下面是对这个结构体的处理<br><code>sub_4EB8C0</code>函数在IDA能大致看出功能<br>先验签 然后解密 再Copy回内存<br>验签:<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-9.png" alt="img"><br>对HashVer的数据读取:<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-10.png" alt="img"><br>然后用CopyFrom往类中写入数据<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-11.png" alt="img"><br>发现这个函数还是解出 <code>8hx...</code>的那个 将其重命名为decrypt<br>接下来出现了第二个解密函数<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-12.png" alt="img"></p>
+<p>再看0296C5B0处的HashVer结构体 一些值的作用就清晰了<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-13.png" alt="img"><br>前面调用过GetSize 返回的是 249h 说明hashver后第四个DWORD就是size<br>前面又分析过了第五个DWORD是标志位 决定是否调用decrypt2</p>
+<p>所以解密流程就是先对hashver的数据用decrypt解密 若标志位为1 继续进行decrypt2解密<br>decrypt2结合IDA+x32dbg动调数据来理解</p>
+<p>一堆ReadFile 但是并没有调用API 所以需要手动进入找到读的那片内存<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-14.png" alt="img"><br>找几个寄存器试试就找到这块<br>接下来的Read都是在这片内存 028D8120<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-15.png" alt="img"><br>第一个DWORD肯定是验证 第二个多半是标志位 第三个是size<br>这里ReadFile读取的值是存在ecx寄存器里的<br>后面对size进行了一个检查 结合IDA: <code>v17&lt;-[ebp-10h]</code> 也可以确定前面922h就是size</p>
+<p>后面有一些间接寻址操作 结合动调来看<br>从004E5722开始<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-16.png" alt="img"><br>这里动调一下会发现有size 有待解密数据的起始地址 又结合IDA知道这就是 end指针<br><code>idr617538_Move(v10, v11, 256);</code> 这句就是把前面建的[0~255]的表复制一份 原表是v10<br>接下来IDA反编译都比较清晰<br>注意到第85行<code>if ( (v12 &amp; 1) == 1 ) </code> 这里往前翻就知道是读取的第二个DWORD 也就是我们猜测的标志位1<br>其实这里就是一个数据类型格式的check<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-17.png" alt="img"><br>根据不同数据格式来移指针<br>标志位为1代表是WORD类型</p>
+<p>最后注意下虽然看似只有一次if但是后面有个 <code>goto label36</code> 所以是个循环<br>这个循环中套的一个 栈+找index的解密<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-18.png" alt="img"><br>可以通过 <code>v15 &lt;- v15 = (_BYTE *)*((_DWORD *)v16 + 1);</code> 知道v15就是指向以v16起始的空间<br>最后返回解密后的类指针</p>
+<p>为了统一 对这部分解密的数据结构装一个结构体 命名为 Decrypt2DataHead(跟教程一样)<br>因为这是decrypt2之前的头部结构 很容易写出来<br>Decrypt2DataHead:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Decrypt2DataHead</span>&#123;</span><br><span class="line">    DWORD sign; <span class="comment">//FF435031</span></span><br><span class="line">    DWORD isWord; <span class="comment">// 1:unsigned __int16</span></span><br><span class="line">    DWORD size; <span class="comment">// 922h</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>找到解密数据的内存 028DA150 然后跑完decrypt2<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-19.png" alt="img"><br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-20.png" alt="img"></p>
+<p>解出来的都是文件名 所以HashVer的数据存的应该是这个pack里打包的文件名<br>可以数下有多少个文件 18个 12h 刚好对应HashVer的第二个Dword 同时也跟FilePack里的size对应上了<br>HashVer的结构:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">HashVer</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x10</span>]; <span class="comment">// HashVer1.4</span></span><br><span class="line">    DWORD table_size;  <span class="comment">// 100h 可能是表的大小???</span></span><br><span class="line">    DWORD file_cnt; <span class="comment">// 12h</span></span><br><span class="line">    DWORD unk; <span class="comment">// 48h</span></span><br><span class="line">    DWORD dataSize; <span class="comment">// 249h</span></span><br><span class="line">    DWORD signal; <span class="comment">// 标志位 1 则decrypt2</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="type">char</span> data[<span class="number">0x249</span>]; <span class="comment">// 加密的数据</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>跳出函数 回到 4EDA1B<br>现在我们还在文件读取初始化函数中 刚刚结束了验签+解密数据等操作<br>然后新设置了文件指针 <code>设置文件指针  句柄:350 偏移量:024D0135  基准:0</code><br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-21.png" alt="img"><br>发现就是 <code>FilePack</code>的几个数据 size和EnrtyPoint<br>然后进行了一个 12次(size次)的循环 那么应该就是分别解密每个文件的数据了<br>IDA可以很直观的看出来:<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-22.png" alt="img"><br><code>sub_4E4C18</code>就是关键的解密函数<br>先IDA看个大概结构<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-23.png" alt="img"><br>动调看一看间接调用即可<br>可以发现这部分指向了HashData<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-24.png" alt="img"><br>注意到传入的第二个参数<code> *(_DWORD *)(*(_DWORD *)v1 + 80)</code> 也就是edx 指向的是之前算出的Hash值 <code>0658D1A0</code><br>然后又ReadFile <code>读取文件:  句柄:364 缓冲:19F642 字节数:2</code><br>读了 <code>00 24</code><br>hashdata前面有一堆 发现是一些版权声明的日文<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-25.png" alt="img"><br>然后又有ReadFile <code>读取文件:  句柄:364 缓冲:2981650 字节数:48</code><br>读的字节数是2*v4 v4的初始值是24h<br>这里的48和HashVer的那个unk的值可能有关联<br>然后就是解密了 IDA很明晰<br>这里v15取的应该是解密数据存放内存的指针(修改了数据格式 unicode转了一下 WORD类型)<br>do-while循环了24h次<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-26.png" alt="img"><br>解密完后回到之前的循环继续下个文件的解密<br>日志打印如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">断点已设置在 004E4CB8 ！</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004E4CB8 (004E4CB8)!</span><br><span class="line">读取文件:  句柄:364 缓冲:2981650 字节数:48</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6118 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29AFDC8 字节数:12</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6134 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29CB858 字节数:18</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6150 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:299F590 字节数:2C</span><br><span class="line">读取文件:  句柄:364 缓冲:28D616C 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:299F590 字节数:26</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6188 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:299F590 字节数:28</span><br><span class="line">读取文件:  句柄:364 缓冲:28D61A4 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29B4D58 字节数:30</span><br><span class="line">读取文件:  句柄:364 缓冲:28D61C0 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29B4D58 字节数:30</span><br><span class="line">读取文件:  句柄:364 缓冲:28D61DC 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29BBE28 字节数:36</span><br><span class="line">读取文件:  句柄:364 缓冲:28D61F8 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29BBE28 字节数:36</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6214 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29B4D58 字节数:34</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6230 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29B4D58 字节数:34</span><br><span class="line">读取文件:  句柄:364 缓冲:28D624C 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29BBF48 字节数:38</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6268 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:297A038 字节数:52</span><br><span class="line">读取文件:  句柄:364 缓冲:28D6284 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:28CBDD0 字节数:56</span><br><span class="line">读取文件:  句柄:364 缓冲:28D62A0 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:297A038 字节数:54</span><br><span class="line">读取文件:  句柄:364 缓冲:28D62BC 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:28CBEA0 字节数:56</span><br><span class="line">读取文件:  句柄:364 缓冲:28D62D8 字节数:1C</span><br><span class="line">INT3 断点于 月に寄りそう乙女の作法2.2.004EDA9A (004EDA9A)!</span><br><span class="line">读取文件:  句柄:364 缓冲:19F642 字节数:2</span><br><span class="line">读取文件:  句柄:364 缓冲:29B4D58 字节数:34</span><br><span class="line">读取文件:  句柄:364 缓冲:28D62F4 字节数:1C</span><br></pre></td></tr></table></figure>
+
+<p>然后来分析这些读取的究竟是些什么数据<br>看都是固定长度1C的数据 多分析几组<br><code>00 00 00 00 00 00 00 00 23 10 00 00 23 10 00 00 00 00 00 00 01 00 00 00 12 40 63 EB</code><br><code>23 10 00 00 00 00 00 00 57 02 00 00 F6 06 00 00 01 00 00 00 01 00 00 00 23 F2 E4 E4</code><br><code>7A 12 00 00 00 00 00 00 64 03 00 00 64 12 00 00 01 00 00 00 01 00 00 00 BC 0C 7A ED</code><br><code>DE 15 00 00 00 00 00 00 1C 12 00 00 1C 12 00 00 00 00 00 00 01 00 00 00 0C E4 5E FF</code><br>…<br><code>0C 4F 00 00 00 00 00 00 A5 0A 00 00 A5 0A 00 00 00 00 00 00 01 00 00 00 EA C6 DC F9</code></p>
+<p>由日志可以看出1C这组地址是连续的 很像一个结构体数组<br>由第一二组 &#x3D;&gt; 00 00 00 00 + 23 10 00 00 &#x3D; 23 10 00 00<br>大致能确定前两个DWORD组成一个QWORD(结合前面的经验)代表地址 然后第三个DWORD代表size(相邻地址的间隔)<br>然后发现一个很有趣的点 观察第四个和第五个DWORD<br>从第五个DWORD入手 当其为0的时候 发现第三个DWORD的size和第四个DWORD的值一样<br>而为1的时候 第四个比第三个大<br>由于这是在FilePack的文件读取初始化中 且我们以及解密了文件名 那么现在解的就是文件本体了<br>可以推断第五个DWORD是标志位 代表大小是否改变 那么第四个DWORD就应该是解密后的size了  至于最后一个DWORD完全看不出来 可能是CRC校验之类的<br>由于这个结构体的功能是 索引地址+提供解密所需的标志参数 将其命名为FileEntry(还是取一样的)<br>结构如下:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FileEntry</span>&#123;</span><br><span class="line">    QWORD offset; <span class="comment">// DWORD2:DWORD1</span></span><br><span class="line">    DWORD size;</span><br><span class="line">    DWORD decrypted_size; <span class="comment">// 解密后的size</span></span><br><span class="line">    DWORD isCompressed; <span class="comment">// 0/1 标志位</span></span><br><span class="line">    DWORD unk1; <span class="comment">// all_the_same : 1</span></span><br><span class="line">    DWORD unk2; <span class="comment">// maybe hash/CRC</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件解密"><a href="#文件解密" class="headerlink" title="文件解密"></a>文件解密</h3><p>然后要等所有文件的文件名都解完过后才进入文件解密<br>前面的流程大致是把每个datax.pack的文件名都解密了 然后都读取了FileEntry<br>结束后日志发现有个 <code>读取文件:  句柄:360 缓冲:3CED440 字节数:1023</code><br>关键的解密函数在sub_4ED454 但找不到是怎么进到这个函数的…<br>IDA看大致结构:<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-27.png" alt="img"><br>根据传入的参数来选择不同分支<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-28.png" alt="img"><br>进入decrypt3后又有个分支<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-29.png" alt="img"><br>但其实IDA看一模一样… 只是写法有一点差异 实现功能完全相同</p>
+<p>近月2所有都是decrypt3 从前面分析的<code>FileEntry</code>结构体可知<br>IDA看<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-30.png" alt="img"><br>由前面的经验知道<code>sub_4ECE7C(a1);</code>就是算出一个hash供后面作为key解密<br>进入hash函数<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-31.png" alt="img"></p>
+<p>先是用 “pack_keyfile_kfueheish15538fa9or.key”对两个key又做了加密<br>然后进入sub_4ECE40算HASH<br>这里的传参要仔细动调<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-32.png" alt="img"><br>而另一个调一调发现是前面传入的1023 也就是读取文件的size<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-33.png" alt="img"><br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-34.png" alt="img"></p>
+<p>XMM指令集开个自动注释就都能弄懂 <code>_m_pslldi</code>是DWORD逻辑左移<br>然后动调看看哪个值指向hash[]<br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-35.png" alt="img"><br><img src="D:/GithubBlog/NozoBlog/source/_posts/whj逆向/images/image-36.png" alt="img"></p>
+<p>到此 近月2的文件解密已经告一段落了<br>近月2都用的decrypt3 而 万华镜用的都是decrypt4</p>
+<p>总流程:<br><img src="/whj%E9%80%86%E5%90%91/images/flow.png" alt="img"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">Home</a></li>
+        
+          <li><a href="/about/">About</a></li>
+        
+          <li><a href="/archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">Projects</a></li>
+        
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%A0%E4%B8%AA%E5%85%B3%E9%94%AE%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.</span> <span class="toc-text">几个关键结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FilePackVer"><span class="toc-number">1.1.</span> <span class="toc-text">FilePackVer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashData"><span class="toc-number">1.2.</span> <span class="toc-text">HashData</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashVer"><span class="toc-number">1.3.</span> <span class="toc-text">HashVer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Decrypt2DataHead"><span class="toc-number">1.4.</span> <span class="toc-text">Decrypt2DataHead</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileEntry"><span class="toc-number">1.5.</span> <span class="toc-text">FileEntry</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%A2%B3%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">流程梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FilePack"><span class="toc-number">2.1.</span> <span class="toc-text">FilePack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.1.</span> <span class="toc-text">文件读取初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E8%A7%A3%E5%AF%86"><span class="toc-number">2.1.2.</span> <span class="toc-text">文件解密</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&text=万华镜逆向"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&is_video=false&description=万华镜逆向"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=万华镜逆向&body=Check out this article: http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&title=万华镜逆向"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&name=万华镜逆向&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/&t=万华镜逆向"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2024
+    N0zoM1z0
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+      --><li><a href="/">Home</a></li><!--
+    --><!--
+      --><li><a href="/about/">About</a></li><!--
+    --><!--
+      --><li><a href="/archives/">Writing</a></li><!--
+    --><!--
+      --><li><a target="_blank" rel="noopener" href="http://github.com/N0zoM1z0">Projects</a></li><!--
+    --><!--
+      --><li><a href="/search/">Search</a></li><!--
+    -->
+      </ul>
+      <ul>
+        
+          <!-- 不蒜子统计 -->
+          <span id="busuanzi_container_site_pv">
+              Friend Link: Kasaki·Nozomi
+          </span>
+          <span class="post-meta-divider">|</span>
+          <span id="busuanzi_container_site_uv" style='display:none'>
+                  Yoroizuka·Mizore
+          </span>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        
+      </ul>
+    </nav>
+  </div>
+  
+</footer>
+
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
