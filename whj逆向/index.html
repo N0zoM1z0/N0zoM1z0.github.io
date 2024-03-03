@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="慢慢磨吧… x32dbg再开一次第一遍熟悉了大概流程 接下来就是逐步完善细节 函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！还有函数层次关系… IDA和x32dbg的base是一样的 互相照着看方便~ 笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了而且版本对了过后跟教程的地址也对的上了！！！ woc 感觉明天一天能逆个十之八九 几个关键结构体FilePa">
+    <meta name="description" content="慢慢磨吧… x32dbg再开一次第一遍熟悉了大概流程 接下来就是逐步完善细节 函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！还有函数层次关系… IDA和x32dbg的base是一样的 互相照着看方便~ 笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了 几个关键结构体FilePackVer地址:结构:46 69 6C 65 50 61 63 6B 56 65">
 <meta property="og:type" content="article">
 <meta property="og:title" content="万华镜逆向">
 <meta property="og:url" content="http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/index.html">
 <meta property="og:site_name" content="N0zoM1z0">
-<meta property="og:description" content="慢慢磨吧… x32dbg再开一次第一遍熟悉了大概流程 接下来就是逐步完善细节 函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！还有函数层次关系… IDA和x32dbg的base是一样的 互相照着看方便~ 笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了而且版本对了过后跟教程的地址也对的上了！！！ woc 感觉明天一天能逆个十之八九 几个关键结构体FilePa">
+<meta property="og:description" content="慢慢磨吧… x32dbg再开一次第一遍熟悉了大概流程 接下来就是逐步完善细节 函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！还有函数层次关系… IDA和x32dbg的base是一样的 互相照着看方便~ 笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了 几个关键结构体FilePackVer地址:结构:46 69 6C 65 50 61 63 6B 56 65">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image.png">
 <meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-1.png">
@@ -52,7 +52,7 @@
 <meta property="og:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image-36.png">
 <meta property="og:image" content="http://n0zom1z0.github.io/whj%E9%80%86%E5%90%91/images/flow.png">
 <meta property="article:published_time" content="2024-03-03T06:48:48.000Z">
-<meta property="article:modified_time" content="2024-03-03T06:49:09.206Z">
+<meta property="article:modified_time" content="2024-03-03T06:55:11.891Z">
 <meta property="article:author" content="N0zoM1z0">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="d:/GithubBlog/NozoBlog/source/_posts/whj%E9%80%86%E5%90%91/images/image.png">
@@ -196,7 +196,7 @@
     <p>慢慢磨吧… x32dbg再开一次<br>第一遍熟悉了大概流程 接下来就是逐步完善细节</p>
 <p>函数没有任何难点 难的在于各个结构体的结构以及偏移量！！！<br>还有函数层次关系…</p>
 <p>IDA和x32dbg的base是一样的 互相照着看方便~</p>
-<p>笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了<br>而且版本对了过后跟教程的地址也对的上了！！！ woc 感觉明天一天能逆个十之八九</p>
+<p>笑死 先前逆的是2… 教程用的2.2… 又下了一个 确实各个数据应该都能对上了</p>
 <h1 id="几个关键结构体"><a href="#几个关键结构体" class="headerlink" title="几个关键结构体"></a>几个关键结构体</h1><h2 id="FilePackVer"><a href="#FilePackVer" class="headerlink" title="FilePackVer"></a>FilePackVer</h2><p>地址:<br>结构:<br>46 69 6C 65 50 61 63 6B 56 65 72 33 2E 31 00 00<br>12 00 00 00 35 01 4D 02 00 00 00 00</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FilePack</span>&#123;</span><br><span class="line">    <span class="type">char</span> sign[<span class="number">0x10</span>];</span><br><span class="line">    DWORD size;</span><br><span class="line">    QWORD EntryPoint;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
