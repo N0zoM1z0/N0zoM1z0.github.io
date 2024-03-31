@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="一些网络安全&#x2F;逆向工程 的网(文)摘 Web红队实录系列：从 NodeJS 代码审计到内网突破 SSRF 蓝队 工具 etc 内网知识点总结 SESSION_UPLOAD_PROGRESS CVE-2020-15148 Yii2反序列化RCE分析与复现  ThinkPHP 5.x 的 RCE 漏洞代码分析  Reverse异常处理反调试的本质: 携带恶意rootkit的github项目通">
+    <meta name="description" content="一些网络安全&#x2F;逆向工程 的网(文)摘 Web红队实录系列：从 NodeJS 代码审计到内网突破 SSRF 蓝队 工具 etc 内网知识点总结 SESSION_UPLOAD_PROGRESS CVE-2020-15148 Yii2反序列化RCE分析与复现  ThinkPHP 5.x 的 RCE 漏洞代码分析  深入理解 JavaScript Prototype 污染攻击  | pithon">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网摘">
 <meta property="og:url" content="http://n0zom1z0.github.io/%E7%BD%91%E6%91%98/index.html">
 <meta property="og:site_name" content="N0zoM1z0">
-<meta property="og:description" content="一些网络安全&#x2F;逆向工程 的网(文)摘 Web红队实录系列：从 NodeJS 代码审计到内网突破 SSRF 蓝队 工具 etc 内网知识点总结 SESSION_UPLOAD_PROGRESS CVE-2020-15148 Yii2反序列化RCE分析与复现  ThinkPHP 5.x 的 RCE 漏洞代码分析  Reverse异常处理反调试的本质: 携带恶意rootkit的github项目通">
+<meta property="og:description" content="一些网络安全&#x2F;逆向工程 的网(文)摘 Web红队实录系列：从 NodeJS 代码审计到内网突破 SSRF 蓝队 工具 etc 内网知识点总结 SESSION_UPLOAD_PROGRESS CVE-2020-15148 Yii2反序列化RCE分析与复现  ThinkPHP 5.x 的 RCE 漏洞代码分析  深入理解 JavaScript Prototype 污染攻击  | pithon">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://n0zom1z0.github.io/%E7%BD%91%E6%91%98/images/image.png">
 <meta property="og:image" content="http://n0zom1z0.github.io/%E7%BD%91%E6%91%98/images/image-1.png">
 <meta property="article:published_time" content="2024-03-08T11:52:26.000Z">
-<meta property="article:modified_time" content="2024-03-17T12:11:42.900Z">
+<meta property="article:modified_time" content="2024-03-31T07:17:17.364Z">
 <meta property="article:author" content="N0zoM1z0">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://n0zom1z0.github.io/%E7%BD%91%E6%91%98/images/image.png">
@@ -119,7 +119,7 @@
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">2.</span> <span class="toc-text">Reverse</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%AE%89%E5%85%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Java安全</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">2.</span> <span class="toc-text">Reverse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pwn"><span class="toc-number">3.</span> <span class="toc-text">Pwn</span></a></li></ol>
       </div>
     
   </span>
@@ -167,8 +167,16 @@
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2035863">SESSION_UPLOAD_PROGRESS</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/260352.html">CVE-2020-15148 Yii2反序列化RCE分析与复现 </a></p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/289860.html">ThinkPHP 5.x 的 RCE 漏洞代码分析 </a></p>
-<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><p>异常处理反调试的本质:<br><img src="/%E7%BD%91%E6%91%98/images/image.png" alt="img"><br><img src="/%E7%BD%91%E6%91%98/images/image-1.png" alt="img"></p>
+<p><a target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/javascript-prototype-pollution-attack.html#">深入理解 JavaScript Prototype 污染攻击  | pithon</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/20175211lyz/p/12659738.html">Node.js 相关安全问题 </a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7184?time__1311=n4+xnD0GDtKx9lFD/iT4BK44qmxmwei=7dY4D&alichlgref=https://xz.aliyun.com/t/7184#toc-6">Node.js 常见漏洞学习与总结 </a></p>
+<h2 id="Java安全"><a href="#Java安全" class="headerlink" title="Java安全"></a>Java安全</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whirly/p/10154887.html">Java动态代理</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.mi1k7ea.com/2019/09/15/%E6%B5%85%E6%9E%90JNDI%E6%B3%A8%E5%85%A5">浅析JNDI注入</a></p>
+<h1 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h1><p>异常处理反调试的本质:<br><img src="/%E7%BD%91%E6%91%98/images/image.png" alt="img"></p>
+<p><img src="/%E7%BD%91%E6%91%98/images/image-1.png" alt="img"></p>
 <p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/14055?time__1311=mqmx9DBG0QD==AKDsD7mG7DyCE023wDhATD&alichlgref=https://xz.aliyun.com/t/7436?time__1311=n4+xnD0G0=it0Q6qGNnmjYYi=iG=dKKG4D&alichlgref=https://blog.csdn.net/your_friends/article/details/126979899">携带恶意rootkit的github项目通过SeroXen RAT木马攻击github项目使用人员 - 先知社区 (aliyun.com)</a></p>
+<h1 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/refrain-again/p/15001283.html">32位函数传参</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Bossfrank/article/details/134872403">栈溢出之ret2libc</a></p>
 
   </div>
 </article>
@@ -198,7 +206,7 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">2.</span> <span class="toc-text">Reverse</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%AE%89%E5%85%A8"><span class="toc-number">1.1.</span> <span class="toc-text">Java安全</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reverse"><span class="toc-number">2.</span> <span class="toc-text">Reverse</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Pwn"><span class="toc-number">3.</span> <span class="toc-text">Pwn</span></a></li></ol>
       </div>
     
 
