@@ -148,7 +148,7 @@ function rightPanel(posts, toc = '') {
       </section>`;
 }
 
-function layout({ title, description, active = 'home', content, posts = [], toc = '', type = 'website', url = '/' }) {
+function layout({ title, description, active = 'home', content, posts = [], toc = '', rightPanelContent = null, type = 'website', url = '/' }) {
   const year = new Date().getFullYear();
   const fullUrl = new URL(url, siteUrl).toString();
   return `<!doctype html>
@@ -233,14 +233,14 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
       ${content}
     </section>
     <aside class="right-panel">
-      ${rightPanel(posts, toc)}
+      ${rightPanelContent || rightPanel(posts, toc)}
     </aside>
   </main>
 
   <footer class="site-footer">
     <div class="site-stats">
-      <span>PV <strong id="busuanzi_value_site_pv">--</strong></span>
-      <span>UV <strong id="busuanzi_value_site_uv">--</strong></span>
+      <span id="busuanzi_container_site_pv">PV <strong id="busuanzi_value_site_pv">--</strong></span>
+      <span id="busuanzi_container_site_uv">UV <strong id="busuanzi_value_site_uv">--</strong></span>
     </div>
   </footer>
 
@@ -391,7 +391,37 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
     backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     toggleBackToTop();
   </script>
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script>
+    (() => {
+      const values = {
+        site_pv: document.querySelector('#busuanzi_value_site_pv'),
+        site_uv: document.querySelector('#busuanzi_value_site_uv'),
+        page_pv: document.querySelector('#busuanzi_value_page_pv')
+      };
+      const containers = document.querySelectorAll('[id^="busuanzi_container_"], .page-view-count');
+      const callbackName = 'BusuanziCallback_' + Math.random().toString(36).slice(2);
+      let completed = false;
+      window[callbackName] = data => {
+        completed = true;
+        for (const key of Object.keys(values)) {
+          if (values[key] && data[key] !== undefined) values[key].textContent = data[key];
+        }
+        containers.forEach(container => container.dataset.counter = 'ok');
+        delete window[callbackName];
+      };
+      const script = document.createElement('script');
+      script.async = true;
+      script.referrerPolicy = 'no-referrer-when-downgrade';
+      script.src = 'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=' + callbackName;
+      script.onerror = () => {
+        containers.forEach(container => container.dataset.counter = 'blocked');
+      };
+      document.head.appendChild(script);
+      window.setTimeout(() => {
+        if (!completed) containers.forEach(container => container.dataset.counter = 'blocked');
+      }, 3500);
+    })();
+  </script>
 </body>
 </html>`;
 }
@@ -675,7 +705,7 @@ function postPage(post, posts) {
             <time datetime="${escapeHtml(post.date)}">${escapeHtml(formatDate(post.date))}</time>
             <span>${post.readingMinutes} min read</span>
             ${categories}
-            <span><strong id="busuanzi_value_page_pv">--</strong> views</span>
+            <span class="page-view-count"><strong id="busuanzi_value_page_pv">--</strong> views</span>
           </div>
           <div class="post-tags-inline">${tags}</div>
         </header>
@@ -686,10 +716,25 @@ function postPage(post, posts) {
 }
 
 function notFoundPage(posts) {
+  const recoveryPanel = `<section class="panel-card recovery-panel">
+        <h2>Recovery Paths</h2>
+        <a href="/">Home base</a>
+        <a href="/archive/">Archive timeline</a>
+        <a href="/search/">Search notes</a>
+      </section>
+      <section class="panel-card">
+        <h2>Recent Valid Route</h2>
+        ${posts.slice(0, 2).map(post => `<a href="${post.url}">${escapeHtml(post.title)}</a>`).join('')}
+      </section>
+      <section class="panel-card">
+        <h2>Try These Tags</h2>
+        <div class="tag-cloud">${tagCloud(posts) || '<span>No tags yet</span>'}</div>
+      </section>`;
   return layout({
     title: '404 | Constraint Not Satisfied',
     description: 'The requested proof path does not exist.',
     posts,
+    rightPanelContent: recoveryPanel,
     url: '/404.html',
     content: `<article class="not-found-card">
         <p class="eyebrow">404</p>
@@ -701,7 +746,7 @@ function notFoundPage(posts) {
           <code>∴ proof rejected: unsatisfied constraint</code>
         </div>
         <div class="not-found-actions">
-          <a href="/">Return home</a>
+          <a class="primary-action" href="/">Return home</a>
           <a href="/archive/">Check archive</a>
           <a href="/search/">Search notes</a>
         </div>

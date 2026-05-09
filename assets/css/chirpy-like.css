@@ -495,6 +495,17 @@ a:hover {
   color: var(--text);
 }
 
+.site-stats [data-counter="blocked"] strong,
+.page-view-count[data-counter="blocked"] strong {
+  color: var(--muted);
+}
+
+.site-stats [data-counter="blocked"] strong::after,
+.page-view-count[data-counter="blocked"] strong::after {
+  content: " unavailable";
+  font-weight: 600;
+}
+
 .mobile-header {
   display: none;
 }
@@ -1062,8 +1073,8 @@ a:hover {
 
 .not-found-card h1 {
   color: var(--text);
-  font-size: clamp(2.2rem, 7vw, 4.8rem);
-  line-height: 1;
+  font-size: clamp(2rem, 6.1vw, 4.35rem);
+  line-height: 0.98;
   margin: 0 0 1rem;
   max-width: 720px;
   position: relative;
@@ -1100,16 +1111,28 @@ a:hover {
 }
 
 .not-found-actions a {
-  background: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, var(--panel));
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
   border-radius: 999px;
-  color: #fff;
+  color: var(--accent-strong);
   font-weight: 800;
   padding: 0.42rem 0.9rem;
+}
+
+.not-found-actions a.primary-action {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
 }
 
 .not-found-actions a:hover {
   filter: brightness(1.06);
   text-decoration: none;
+}
+
+.recovery-panel {
+  display: grid;
+  gap: 0.45rem;
 }
 
 .back-to-top {
