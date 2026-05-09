@@ -12,6 +12,7 @@
     "version": "6.3.0"
   },
   "dependencies": {
+    "gray-matter": "^2.1.1",
     "hexo": "^6.3.0",
     "hexo-blog-encrypt": "^3.1.9",
     "hexo-deployer-git": "^4.0.0",
@@ -30,6 +31,7 @@
     "hexo-symbols-count-time": "^0.7.1",
     "hexo-theme-landscape": "^1.0.0",
     "hexo-toc": "^1.1.0",
-    "live2d-widget-model-z16": "^1.0.5"
+    "live2d-widget-model-z16": "^1.0.5",
+    "marked": "^4.3.0"
   }
 }

@@ -32,7 +32,13 @@ http.createServer((req, res) => {
     file = path.join(file, 'index.html');
   }
   if (!file.startsWith(root) || !fs.existsSync(file)) {
-    res.writeHead(404);
+    const notFound = path.join(root, '404.html');
+    if (fs.existsSync(notFound)) {
+      res.writeHead(404, { 'Content-Type': types['.html'] });
+      fs.createReadStream(notFound).pipe(res);
+      return;
+    }
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     res.end('Not found');
     return;
   }
