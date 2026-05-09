@@ -23,6 +23,8 @@ function escapeHtml(value = '') {
 
 function slugify(value = '') {
   return String(value)
+    .replace(/<[^>]+>/g, '')
+    .replace(/`+/g, '')
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[^\w\s-]/g, '')
@@ -44,6 +46,7 @@ function formatDate(value) {
 
 function stripMarkdown(markdown) {
   return markdown
+    .replace(/^#\s+.+$/m, ' ')
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
     .replace(/\[[^\]]+]\(([^)]+)\)/g, '$1')
@@ -104,7 +107,8 @@ function renderMarkdown(markdown) {
   const renderer = new marked.Renderer();
   renderer.heading = (text, level) => {
     const id = slugify(text);
-    const anchor = `<a class="heading-anchor" href="#${id}" aria-label="Copy link to ${escapeHtml(text)}">#</a>`;
+    const plainText = String(text).replace(/<[^>]+>/g, '');
+    const anchor = `<a class="heading-anchor" href="#${id}" aria-label="Copy link to ${escapeHtml(plainText)}">#</a>`;
     return `<h${level} id="${id}">${text}${anchor}</h${level}>`;
   };
   return marked.parse(markdown, { renderer });
@@ -131,14 +135,14 @@ function tagCloud(posts) {
 function rightPanel(posts, toc = '') {
   const recent = posts.slice(0, 3)
     .map(post => `<a href="${post.url}">${escapeHtml(post.title)}</a>`)
-    .join('');
+    .join('\n        ');
   const tags = tagCloud(posts) || '<span>No tags yet</span>';
   return `${toc}
-      <section class="panel-card">
+      <section class="panel-card link-list">
         <h2>Recently Updated</h2>
         ${recent}
       </section>
-      <section class="panel-card">
+      <section class="panel-card link-list">
         <h2>Project Index</h2>
         <a href="/projects/">View all projects</a>
       </section>
@@ -163,7 +167,7 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
   <meta property="og:url" content="${fullUrl}">
   <meta name="twitter:card" content="summary">
   <title>${escapeHtml(title)}</title>
-  <link rel="alternate" type="application/rss+xml" title="N0ZoM1z0" href="/feed.xml">
+  <link rel="alternate" type="application/rss+xml" title="N0zoM1z0" href="/feed.xml">
   <link rel="stylesheet" href="/assets/css/chirpy-like.css">
 </head>
 <body>
@@ -192,8 +196,8 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
 
   <aside class="site-sidebar">
     <div class="brand" aria-label="Site identity">
-      <img class="avatar" src="/assets/img/avatar.jpg" alt="N0ZoM1z0 avatar">
-      <span class="brand-title">N0ZoM1z0</span>
+      <img class="avatar" src="/assets/img/avatar.jpg" alt="N0zoM1z0 avatar">
+      <span class="brand-title">N0zoM1z0</span>
       <span class="brand-subtitle">Code. Break. Learn. Rise.</span>
     </div>
     <div class="profile-links" aria-label="Profile links">
@@ -219,12 +223,13 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
     </nav>
     <div class="sidebar-footer">
       <span>© ${year}</span>
-      <span>Powered by caffeine and broken assumptions.</span>
+      <span>Powered by Magic, Tea, and Formal Verification.</span>
+      <span>Maintained by the Senior Incident Resolver @ TouHou University.</span>
     </div>
   </aside>
 
   <header class="mobile-header">
-    <a href="/">N0ZoM1z0</a>
+    <a href="/">N0zoM1z0</a>
     <span>Code. Break. Learn. Rise.</span>
   </header>
 
@@ -322,6 +327,10 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
       spinnerGate.addEventListener('pointercancel', resetAngle);
       spinnerSkip.addEventListener('click', () => unlockPage(true));
     }
+
+    console.log('Welcome, traveler. You are now entering the logic-space of TouHou University.');
+    console.log('Status: Proving guarantees... [OK]');
+    console.log('Contact the Incident Resolver: r00tth3w0r1d@gmail.com');
   </script>
 
   <script>
@@ -461,8 +470,8 @@ function archivePage(posts) {
         </div>
       </section>`).join('');
   return layout({
-    title: 'Archive | N0ZoM1z0',
-    description: 'Chronological archive for N0ZoM1z0 posts.',
+    title: 'Archive | N0zoM1z0',
+    description: 'Chronological archive for N0zoM1z0 posts.',
     active: 'archive',
     posts,
     url: '/archive/',
@@ -477,14 +486,48 @@ function archivePage(posts) {
 function indexPage(posts) {
   const latest = posts[0];
   return layout({
-    title: 'N0ZoM1z0',
-    description: 'Security research notes by N0ZoM1z0',
+    title: 'N0zoM1z0',
+    description: 'Security research notes by N0zoM1z0',
     posts,
     content: `<header class="page-title">
         <p class="eyebrow">Home</p>
         <h1>Break assumptions. Prove guarantees.</h1>
       </header>
-      ${latest ? postCard(latest) : '<p>No posts yet.</p>'}
+      <section class="section-block home-about-block">
+        <div class="section-heading">
+          <p class="eyebrow">About</p>
+          <a href="/about/">Read more</a>
+        </div>
+        <article class="project-card compact">
+          <div>
+            <h2>Senior Incident Resolver @ TouHou University</h2>
+            <p>Security Researcher for the Great Hakurei Barrier.</p>
+            <p>Learning to break assumptions and prove guarantees.</p>
+            <p>ZK &amp; FV enthusiast.</p>
+            <p><a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a></p>
+          </div>
+          <a class="project-link" href="/about/">Open</a>
+        </article>
+      </section>
+      <section class="home-meta-grid">
+        <article class="home-meta-card">
+          <p class="eyebrow">Now</p>
+          <h2>ZK / FV / security notes</h2>
+          <p>Learning to break assumptions and prove guarantees.</p>
+        </article>
+        <article class="home-meta-card">
+          <p class="eyebrow">Contact</p>
+          <h2>r00tth3w0r1d</h2>
+          <p><a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a> / <a href="https://github.com/N0zoM1z0" target="_blank" rel="noreferrer">GitHub</a> / <a href="https://x.com/r00tth3w0r1d" target="_blank" rel="noreferrer">X</a></p>
+        </article>
+      </section>
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow">Posts</p>
+          <a href="/posts/">View all</a>
+        </div>
+        ${latest ? postCard(latest) : '<p>No posts yet.</p>'}
+      </section>
       <section class="section-block">
         <div class="section-heading">
           <p class="eyebrow">Projects</p>
@@ -503,8 +546,8 @@ function indexPage(posts) {
 
 function postsPage(posts) {
   return layout({
-    title: 'Posts | N0ZoM1z0',
-    description: 'Posts by N0ZoM1z0.',
+    title: 'Posts | N0zoM1z0',
+    description: 'Posts by N0zoM1z0.',
     active: 'posts',
     posts,
     url: '/posts/',
@@ -528,8 +571,8 @@ function categoriesPage(posts) {
           </div>
         </article>`).join('');
   return layout({
-    title: 'Categories | N0ZoM1z0',
-    description: 'Categories for N0ZoM1z0 posts.',
+    title: 'Categories | N0zoM1z0',
+    description: 'Categories for N0zoM1z0 posts.',
     active: 'categories',
     posts,
     url: '/categories/',
@@ -548,8 +591,8 @@ function tagsPage(posts) {
         ${tagPosts.map(postCard).join('')}
       </article>`).join('');
   return layout({
-    title: 'Tags | N0ZoM1z0',
-    description: 'Tags for N0ZoM1z0 posts.',
+    title: 'Tags | N0zoM1z0',
+    description: 'Tags for N0zoM1z0 posts.',
     active: 'tags',
     posts,
     url: '/tags/',
@@ -563,8 +606,8 @@ function tagsPage(posts) {
 
 function projectsPage(posts) {
   return layout({
-    title: 'Projects | N0ZoM1z0',
-    description: 'Project index for N0ZoM1z0.',
+    title: 'Projects | N0zoM1z0',
+    description: 'Project index for N0zoM1z0.',
     active: 'projects',
     posts,
     url: '/projects/',
@@ -589,23 +632,25 @@ function projectsPage(posts) {
 
 function aboutPage(posts) {
   return layout({
-    title: 'About | N0ZoM1z0',
-    description: 'About N0ZoM1z0.',
+    title: 'About | N0zoM1z0',
+    description: 'About N0zoM1z0.',
     active: 'about',
     posts,
     url: '/about/',
     content: `<article class="post-article">
         <header class="post-hero">
           <p class="eyebrow">About</p>
-          <h1>N0ZoM1z0</h1>
+          <h1>N0zoM1z0</h1>
           <div class="post-meta-line">
             <span>Code. Break. Learn. Rise.</span>
           </div>
         </header>
         <div class="markdown-body">
-          <p>TouHou University. Learning to break assumptions and prove guarantees.</p>
-          <p>ZK &amp; FV enthusiast. Security researcher in the making.</p>
-          <p>Reach me at <a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a>.</p>
+          <p>Senior Incident Resolver @ TouHou University</p>
+          <p>Security Researcher for the Great Hakurei Barrier.</p>
+          <p>Learning to break assumptions and prove guarantees.</p>
+          <p>ZK &amp; FV enthusiast.</p>
+          <p>Email: <a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a></p>
         </div>
       </article>`
   });
@@ -613,8 +658,8 @@ function aboutPage(posts) {
 
 function searchPage(posts) {
   return layout({
-    title: 'Search | N0ZoM1z0',
-    description: 'Search N0ZoM1z0 posts.',
+    title: 'Search | N0zoM1z0',
+    description: 'Search N0zoM1z0 posts.',
     active: 'search',
     posts,
     url: '/search/',
@@ -690,7 +735,7 @@ function postPage(post, posts) {
     .map(tag => `<a href="/tags/#tag-${slugify(tag)}">#${escapeHtml(tag)}</a>`)
     .join('');
   return layout({
-    title: `${post.title} | N0ZoM1z0`,
+    title: `${post.title} | N0zoM1z0`,
     description: post.excerpt,
     active: 'posts',
     posts,
@@ -717,41 +762,59 @@ function postPage(post, posts) {
 
 function notFoundPage(posts) {
   const recoveryPanel = `<section class="panel-card recovery-panel">
-        <h2>Recovery Paths</h2>
-        <a href="/">Home base</a>
+        <h2>Return to Reality</h2>
+        <a href="/">Home boundary</a>
         <a href="/archive/">Archive timeline</a>
         <a href="/search/">Search notes</a>
       </section>
-      <section class="panel-card">
-        <h2>Recent Valid Route</h2>
-        ${posts.slice(0, 2).map(post => `<a href="${post.url}">${escapeHtml(post.title)}</a>`).join('')}
+      <section class="panel-card link-list">
+        <h2>Recent Valid Routes</h2>
+        ${posts.slice(0, 2).map(post => `<a href="${post.url}">${escapeHtml(post.title)}</a>`).join('\n        ')}
       </section>
       <section class="panel-card">
         <h2>Try These Tags</h2>
         <div class="tag-cloud">${tagCloud(posts) || '<span>No tags yet</span>'}</div>
       </section>`;
   return layout({
-    title: '404 | Constraint Not Satisfied',
-    description: 'The requested proof path does not exist.',
+    title: '404 | Boundary Not Found',
+    description: 'The requested route fell into a boundary gap.',
     posts,
     rightPanelContent: recoveryPanel,
     url: '/404.html',
     content: `<article class="not-found-card">
         <p class="eyebrow">404</p>
-        <h1>Constraint system not satisfied.</h1>
-        <p>The witness was missing, the selector pointed nowhere, and the verifier rejected this route.</p>
+        <h1>Gap! You fell into a boundary between dimensions.</h1>
+        <p>The route exists in neither the blog state space nor the Great Hakurei Barrier. The verifier tried its best; the witness still vanished.</p>
         <div class="zk-proof-box" aria-label="404 proof sketch">
-          <code>∀ route ∈ Blog, verify(path) = 1</code>
-          <code>current_path ∉ Blog</code>
-          <code>∴ proof rejected: unsatisfied constraint</code>
+          <code>∀ route ∈ Blog, verify(route) = 1</code>
+          <code>current_path ∉ Blog ∧ current_path ∉ Reality</code>
+          <code>∴ boundary check failed: proof rejected</code>
         </div>
         <div class="not-found-actions">
-          <a class="primary-action" href="/">Return home</a>
+          <a class="primary-action" href="/">Return to Reality</a>
           <a href="/archive/">Check archive</a>
           <a href="/search/">Search notes</a>
         </div>
       </article>`
   });
+}
+
+function redirectPage({ title, target, message }) {
+  const safeTarget = escapeHtml(target);
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=${safeTarget}">
+  <link rel="canonical" href="${safeTarget}">
+  <title>${escapeHtml(title)}</title>
+  <script>location.replace(${JSON.stringify(target)});</script>
+</head>
+<body>
+  <p>${escapeHtml(message)} <a href="${safeTarget}">${safeTarget}</a></p>
+</body>
+</html>`;
 }
 
 function writeJson(file, value) {
@@ -769,9 +832,9 @@ function writeFeed(posts) {
   fs.writeFileSync(path.join(outDir, 'feed.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>N0ZoM1z0</title>
+  <title>N0zoM1z0</title>
   <link>${siteUrl}</link>
-  <description>Security research notes by N0ZoM1z0</description>
+  <description>Security research notes by N0zoM1z0</description>
   ${items}
 </channel>
 </rss>
@@ -779,7 +842,7 @@ function writeFeed(posts) {
 }
 
 function writeSitemap(posts) {
-  const urls = ['/', '/posts/', '/archive/', '/categories/', '/tags/', '/projects/', '/about/', '/search/', '/404.html', ...posts.map(post => post.url)];
+  const urls = ['/', '/posts/', '/archive/', '/archives/', '/categories/', '/tags/', '/projects/', '/about/', '/search/', '/404.html', ...posts.map(post => post.url)];
   fs.writeFileSync(path.join(outDir, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map(url => `  <url><loc>${siteUrl}${url}</loc></url>`).join('\n')}
@@ -797,6 +860,11 @@ function main() {
     ['', indexPage(posts)],
     ['posts', postsPage(posts)],
     ['archive', archivePage(posts)],
+    ['archives', redirectPage({
+      title: 'Redirecting to Archive | N0zoM1z0',
+      target: '/archive/',
+      message: 'The old archives path moved to'
+    })],
     ['categories', categoriesPage(posts)],
     ['tags', tagsPage(posts)],
     ['projects', projectsPage(posts)],

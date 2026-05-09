@@ -7,10 +7,7 @@ categories:
   - Projects
 tags:
   - osu
-  - browser
-  - web-audio
-  - pixi
-  - rhythm-game
+  - web
 project: oszillator
 ---
 
@@ -36,11 +33,11 @@ The cursor is already moving before your brain has finished reading the next obj
 
 That was the actual starting point for **oszillator**.
 
-Not “let's build a serious lab.”
+Not "let's build a serious lab."
 
-Not “let's replace osu!.”
+Not "let's replace osu!."
 
-Not “let's make a ranked client, a private server, a score system, or a perfect compatibility layer.”
+Not "let's make a ranked client, a private server, a score system, or a perfect compatibility layer."
 
 The original thought was much simpler:
 
@@ -52,7 +49,7 @@ Drop a `.osz` file into the page. Pick a difficulty. Click circles. Follow slide
 
 That is the spirit of oszillator. It is an unofficial web experiment for osu!standard-style gameplay: a browser player that tries to make the act of clicking circles feel smooth, expressive, and surprisingly alive.
 
-The “local import” part is important, but it is not the soul of the project. It is the boundary that makes the web experiment clean. No login. No score submission. No online beatmap download. No pretending to be official. The browser reads the file you provide, runs the game loop, plays the audio, renders the objects, and keeps local scores on your machine.
+The "local import" part is important, but it is not the soul of the project. It is the boundary that makes the web experiment clean. No login. No score submission. No online beatmap download. No pretending to be official. The browser reads the file you provide, runs the game loop, plays the audio, renders the objects, and keeps local scores on your machine.
 
 The soul is: I wanted to see osu!standard happen inside a web page, and I wanted it to feel good.
 
@@ -94,11 +91,11 @@ The web version is fun precisely because the core is not a pile of UI hacks.
 
 The first real problem was time.
 
-In a rhythm game, “now” is not whatever `requestAnimationFrame` says. Frames jitter. Tabs get throttled. The browser is allowed to miss a frame. Your monitor refresh rate is not the beatmap clock.
+In a rhythm game, "now" is not whatever `requestAnimationFrame` says. Frames jitter. Tabs get throttled. The browser is allowed to miss a frame. Your monitor refresh rate is not the beatmap clock.
 
 The audio clock has to be the source of truth.
 
-So oszillator treats Web Audio as the authoritative timeline. The renderer asks, “what should be visible at this audio time?” The ruleset asks, “what object is hittable at this audio time?” Input is judged against that same timeline.
+So oszillator treats Web Audio as the authoritative timeline. The renderer asks, "what should be visible at this audio time?" The ruleset asks, "what object is hittable at this audio time?" Input is judged against that same timeline.
 
 This made a huge difference. Before that, the app could look okay while still feeling slightly wrong. After moving judgement and rendering around the audio clock, the game started feeling grounded. Approach circles lined up better. Autoplay looked more intentional. Hit windows became meaningful.
 
@@ -126,7 +123,7 @@ Circles are easy compared to sliders.
 
 A circle is a position, a radius, an approach time, and a judgement window. Sliders are geometry, timing, repeats, heads, tails, follow points, ticks, path length, visual thickness, stacking behavior, and player expectation all wrapped into one object.
 
-At first our sliders technically worked, but they looked wrong. Short sliders looked like gourds. Heads and tails were too heavy. Some paths felt clipped. Repeat sliders looked confusing because both ends behaved like full circles. The shape did not communicate “follow this path” clearly enough.
+At first our sliders technically worked, but they looked wrong. Short sliders looked like gourds. Heads and tails were too heavy. Some paths felt clipped. Repeat sliders looked confusing because both ends behaved like full circles. The shape did not communicate "follow this path" clearly enough.
 
 We iterated on the visual language several times.
 
@@ -138,7 +135,7 @@ O====}
 
 The head is a circle because that is where you start. The body is a continuous track. The tail is a shaped ending, not another full note screaming for attention. For repeat sliders, the reverse direction still has to be readable, but normal one-way sliders should not look like back-and-forth sliders.
 
-This is a good example of where “accurate enough” and “feels right” are different axes. The browser player is not trying to be a pixel-perfect official client. It is trying to make a web version feel readable, smooth, and fun. Slider UI has to respect osu! habits while still being allowed to make its own visual decisions.
+This is a good example of where "accurate enough" and "feels right" are different axes. The browser player is not trying to be a pixel-perfect official client. It is trying to make a web version feel readable, smooth, and fun. Slider UI has to respect osu! habits while still being allowed to make its own visual decisions.
 
 ## The Cursor Needed Personality
 
@@ -164,9 +161,9 @@ osu!standard is brutal because being wrong by a little can feel the same as bein
 
 oszillator implements 300 / 100 / 50 / miss style feedback and a hit offset history. The bottom bar shows recent timing distribution so you can see whether hits are leaning fast or slow.
 
-This is one of the places where the app accidentally becomes useful beyond the original “this is fun” motivation. If you can import a map, play it, and immediately see that your taps are consistently late, the browser toy has become a real debugging tool for your hands.
+This is one of the places where the app accidentally becomes useful beyond the original "this is fun" motivation. If you can import a map, play it, and immediately see that your taps are consistently late, the browser toy has become a real debugging tool for your hands.
 
-But the hierarchy still matters. The project did not start from “let's make the ultimate analytics lab.” It started from “let's make osu! happen in a browser.” The timing feedback is a natural consequence of making the gameplay loop feel complete.
+But the hierarchy still matters. The project did not start from "let's make the ultimate analytics lab." It started from "let's make osu! happen in a browser." The timing feedback is a natural consequence of making the gameplay loop feel complete.
 
 ## Backgrounds, Videos, and the Stage Feeling Alive
 
@@ -176,9 +173,9 @@ The background matters. The video matters. The mood matters. A map with its medi
 
 Supporting beatmap images and browser-compatible videos made oszillator feel dramatically better. When a background video is present, the static background should step away. When there is no video, the background image fills that emotional space. The playfield still needs contrast and readability, so the app uses overlays and framing, but the map should not feel visually empty.
 
-This also changed the first-load experience. A blank page that says “import file” is functional, but not exciting. The hosted demo now includes a showcase mode so the page starts alive: autoplay, Hidden, dynamic colors, real object motion, real media, then it stops at the end instead of looping forever.
+This also changed the first-load experience. A blank page that says "import file" is functional, but not exciting. The hosted demo now includes a showcase mode so the page starts alive: autoplay, Hidden, dynamic colors, real object motion, real media, then it stops at the end instead of looping forever.
 
-The showcase is not the product replacing user imports. It is the welcome screen saying, “look, this is the kind of thing this browser tab can do.”
+The showcase is not the product replacing user imports. It is the welcome screen saying, "look, this is the kind of thing this browser tab can do."
 
 ## Mods: Familiar, But Not Ranked
 
@@ -206,7 +203,7 @@ The renderer went through a lot of small changes that do not sound glamorous:
 - Keep spinner visuals alive throughout the spin instead of disappearing halfway.
 - Sort object visibility so dense tapping patterns read with the right temporal layering.
 
-Individually, each change is tiny. Together, they are the difference between “a web demo” and “wait, this actually feels good.”
+Individually, each change is tiny. Together, they are the difference between "a web demo" and "wait, this actually feels good."
 
 One of my favorite parts of the project is that smoothness did not come from one magic trick. It came from dozens of small corrections: this fade is too sudden, this slider tail is too loud, this cursor trail is missing in autoplay, this video background should hide the image, this restart path should reset audio state, this long intro needs a top progress bar instead of a weird floating countdown.
 
@@ -232,7 +229,7 @@ That difference is the fun part.
 
 The first lesson is that the browser is good enough for more than people give it credit for. Web Audio, WebGL through Pixi, modern file APIs, object URLs, workers, and TypeScript are enough to build a serious-feeling rhythm game surface.
 
-The second lesson is that architecture matters even for “just for fun” projects. Especially for them. If the renderer had been parsing raw `.osu` lines, every visual tweak would have been dangerous. If judgement depended on frame deltas, every performance issue would have become a gameplay issue. If media loading was mixed into scoring, every new showcase map would have been scary.
+The second lesson is that architecture matters even for "just for fun" projects. Especially for them. If the renderer had been parsing raw `.osu` lines, every visual tweak would have been dangerous. If judgement depended on frame deltas, every performance issue would have become a gameplay issue. If media loading was mixed into scoring, every new showcase map would have been scary.
 
 The third lesson is that compatibility should be honest. We can be inspired by osu!standard and still document where we differ. That is better than pretending to be exact and silently getting edge cases wrong.
 
