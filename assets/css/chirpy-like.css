@@ -873,11 +873,25 @@ a:hover {
 
 .markdown-body pre {
   background: var(--code-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, transparent);
   border-radius: 0.85rem;
   color: #e8edf7;
+  line-height: 1.62;
   overflow-x: auto;
-  padding: 1rem 1.15rem;
+  padding: 2.2rem 1.15rem 1rem;
   position: relative;
+}
+
+.markdown-body pre::before {
+  color: color-mix(in srgb, var(--accent) 72%, #ffffff);
+  content: attr(data-language);
+  font-size: 0.68rem;
+  font-weight: 900;
+  left: 1rem;
+  letter-spacing: 0.12em;
+  position: absolute;
+  text-transform: uppercase;
+  top: 0.72rem;
 }
 
 .markdown-body code {
@@ -891,6 +905,58 @@ a:hover {
   background: transparent;
   color: inherit;
   padding: 0;
+}
+
+.markdown-body .token.comment,
+.markdown-body .token.prolog,
+.markdown-body .token.doctype,
+.markdown-body .token.cdata {
+  color: #8ea4aa;
+}
+
+.markdown-body .token.punctuation {
+  color: #d4e3e7;
+}
+
+.markdown-body .token.property,
+.markdown-body .token.tag,
+.markdown-body .token.boolean,
+.markdown-body .token.number,
+.markdown-body .token.constant,
+.markdown-body .token.symbol {
+  color: #9ed6cb;
+}
+
+.markdown-body .token.selector,
+.markdown-body .token.attr-name,
+.markdown-body .token.string,
+.markdown-body .token.char,
+.markdown-body .token.builtin {
+  color: #c6e6a9;
+}
+
+.markdown-body .token.operator,
+.markdown-body .token.entity,
+.markdown-body .token.url,
+.markdown-body .token.variable {
+  color: #9fc7ff;
+}
+
+.markdown-body .token.atrule,
+.markdown-body .token.attr-value,
+.markdown-body .token.function,
+.markdown-body .token.class-name {
+  color: #f4d58d;
+}
+
+.markdown-body .token.keyword {
+  color: #8fd3ff;
+  font-weight: 700;
+}
+
+.markdown-body .token.regex,
+.markdown-body .token.important {
+  color: #ffb3a7;
 }
 
 .code-copy {
@@ -967,11 +1033,18 @@ a:hover {
 .toc {
   display: grid;
   gap: 0.45rem;
+  max-height: min(58vh, 620px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-color: color-mix(in srgb, var(--accent) 45%, transparent) transparent;
+  scrollbar-width: thin;
 }
 
 .toc a {
   color: var(--muted);
   font-size: 0.88rem;
+  line-height: 1.35;
+  padding-right: 0.2rem;
 }
 
 .toc a.active {

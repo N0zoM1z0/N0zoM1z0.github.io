@@ -2,6 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 const { marked } = require('marked');
+const Prism = require('prismjs');
+require('prismjs/components/prism-bash');
+require('prismjs/components/prism-json');
+require('prismjs/components/prism-markdown');
+require('prismjs/components/prism-rust');
+require('prismjs/components/prism-toml');
+require('prismjs/components/prism-typescript');
+require('prismjs/components/prism-yaml');
 
 const root = path.resolve(__dirname, '..');
 const contentDir = path.join(root, 'content', 'posts');
@@ -111,6 +119,28 @@ function renderMarkdown(markdown) {
     const anchor = `<a class="heading-anchor" href="#${id}" aria-label="Copy link to ${escapeHtml(plainText)}">#</a>`;
     return `<h${level} id="${id}">${text}${anchor}</h${level}>`;
   };
+  renderer.code = (code, language = '') => {
+    const normalized = String(language).trim().toLowerCase();
+    const aliases = {
+      console: 'bash',
+      js: 'javascript',
+      md: 'markdown',
+      rs: 'rust',
+      shell: 'bash',
+      sh: 'bash',
+      text: 'text',
+      txt: 'text',
+      ts: 'typescript',
+      yml: 'yaml'
+    };
+    const grammarName = aliases[normalized] || normalized;
+    const grammar = Prism.languages[grammarName];
+    const highlighted = grammar
+      ? Prism.highlight(code, grammar, grammarName)
+      : escapeHtml(code);
+    const languageLabel = normalized || 'text';
+    return `<pre class="language-${escapeHtml(languageLabel)}" data-language="${escapeHtml(languageLabel)}"><code class="language-${escapeHtml(languageLabel)}">${highlighted}</code></pre>`;
+  };
   return marked.parse(markdown, { renderer });
 }
 
@@ -119,7 +149,7 @@ function articleBodyMarkdown(markdown) {
 }
 
 function tocFromMarkdown(markdown) {
-  const headings = [...markdown.matchAll(/^##\s+(.+)$/gm)].slice(0, 12);
+  const headings = [...markdown.matchAll(/^##\s+(.+)$/gm)].slice(0, 24);
   if (!headings.length) return '';
   const links = headings.map(([, text]) => {
     const id = slugify(text);
@@ -363,14 +393,29 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
     });
 
     const tocLinks = [...document.querySelectorAll('.toc a')];
-    const tocTargets = tocLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
-    if (tocLinks.length && 'IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-        tocLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + visible.target.id));
-      }, { rootMargin: '-15% 0px -70% 0px', threshold: [0, 1] });
-      tocTargets.forEach(target => observer.observe(target));
+    const tocTargetFor = link => {
+      const href = link.getAttribute('href') || '';
+      if (!href.startsWith('#')) return null;
+      return document.getElementById(decodeURIComponent(href.slice(1)));
+    };
+    const tocTargets = tocLinks.map(tocTargetFor).filter(Boolean);
+    if (tocLinks.length && tocTargets.length) {
+      const setActiveToc = () => {
+        const marker = window.scrollY + window.innerHeight * 0.24;
+        let active = tocTargets[0];
+        for (const target of tocTargets) {
+          if (target.offsetTop <= marker) active = target;
+          else break;
+        }
+        tocLinks.forEach(link => {
+          const isActive = link.getAttribute('href') === '#' + active.id;
+          link.classList.toggle('active', isActive);
+          if (isActive) link.scrollIntoView({ block: 'nearest' });
+        });
+      };
+      setActiveToc();
+      window.addEventListener('scroll', setActiveToc, { passive: true });
+      window.addEventListener('resize', setActiveToc);
     }
   </script>
 
