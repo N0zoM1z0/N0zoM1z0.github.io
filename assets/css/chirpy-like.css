@@ -549,7 +549,7 @@ a:hover {
 .page-title h1,
 .post-hero h1 {
   color: var(--text);
-  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-size: clamp(1.75rem, 4.2vw, 2.75rem);
   line-height: 1.1;
   margin: 0;
 }
@@ -578,7 +578,7 @@ a:hover {
 .post-card-title {
   color: var(--text);
   display: block;
-  font-size: 1.35rem;
+  font-size: 1.18rem;
   font-weight: 800;
   margin-bottom: 0.6rem;
 }

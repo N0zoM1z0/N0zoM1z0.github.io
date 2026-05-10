@@ -114,6 +114,10 @@ function renderMarkdown(markdown) {
   return marked.parse(markdown, { renderer });
 }
 
+function articleBodyMarkdown(markdown) {
+  return markdown.replace(/^#\s+.+\n+/, '').trim();
+}
+
 function tocFromMarkdown(markdown) {
   const headings = [...markdown.matchAll(/^##\s+(.+)$/gm)].slice(0, 12);
   if (!headings.length) return '';
@@ -491,7 +495,7 @@ function indexPage(posts) {
     posts,
     content: `<header class="page-title">
         <p class="eyebrow">Home</p>
-        <h1>Break assumptions. Prove guarantees.</h1>
+        <h1>Break assumptions.<br>Prove guarantees.</h1>
       </header>
       <section class="section-block home-about-block">
         <div class="section-heading">
@@ -504,7 +508,6 @@ function indexPage(posts) {
             <p>Security Researcher for the Great Hakurei Barrier.</p>
             <p>Learning to break assumptions and prove guarantees.</p>
             <p>ZK &amp; FV enthusiast.</p>
-            <p><a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a></p>
           </div>
           <a class="project-link" href="/about/">Open</a>
         </article>
@@ -518,7 +521,7 @@ function indexPage(posts) {
         <article class="home-meta-card">
           <p class="eyebrow">Contact</p>
           <h2>r00tth3w0r1d</h2>
-          <p><a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a> / <a href="https://github.com/N0zoM1z0" target="_blank" rel="noreferrer">GitHub</a> / <a href="https://x.com/r00tth3w0r1d" target="_blank" rel="noreferrer">X</a></p>
+          <p><a href="mailto:r00tth3w0r1d@gmail.com">Email</a> / <a href="https://github.com/N0zoM1z0" target="_blank" rel="noreferrer">GitHub</a> / <a href="https://x.com/r00tth3w0r1d" target="_blank" rel="noreferrer">X</a></p>
         </article>
       </section>
       <section class="section-block">
@@ -650,7 +653,6 @@ function aboutPage(posts) {
           <p>Security Researcher for the Great Hakurei Barrier.</p>
           <p>Learning to break assumptions and prove guarantees.</p>
           <p>ZK &amp; FV enthusiast.</p>
-          <p>Email: <a href="mailto:r00tth3w0r1d@gmail.com">r00tth3w0r1d@gmail.com</a></p>
         </div>
       </article>`
   });
@@ -728,6 +730,7 @@ function relatedBlock(post, posts) {
 }
 
 function postPage(post, posts) {
+  const articleMarkdown = articleBodyMarkdown(post.markdown);
   const categories = post.categories
     .map(category => `<a href="/categories/#category-${slugify(category)}">${escapeHtml(category)}</a>`)
     .join('');
@@ -754,7 +757,7 @@ function postPage(post, posts) {
           </div>
           <div class="post-tags-inline">${tags}</div>
         </header>
-        <div class="markdown-body">${renderMarkdown(post.markdown)}</div>
+        <div class="markdown-body">${renderMarkdown(articleMarkdown)}</div>
         ${relatedBlock(post, posts)}
       </article>`
   });
