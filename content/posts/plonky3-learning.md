@@ -1,5 +1,5 @@
 ---
-title: "Plonky3 Deep Dive: Reading a STARK Toolkit From the Source"
+title: "Part I: Plonky3 Deep Dive: Reading a STARK Toolkit From the Source"
 date: "2026-05-11"
 slug: "plonky3-learning"
 categories:
@@ -9,9 +9,11 @@ tags:
   - plonky3
   - stark
   - learning
+series: "Plonky3"
+seriesPart: 1
 ---
 
-# Plonky3 Deep Dive: Reading a STARK Toolkit From the Source
+# Part I: Plonky3 Deep Dive: Reading a STARK Toolkit From the Source
 
 *Commit first. Challenge later. If it is not in the transcript, it did not happen.*
 

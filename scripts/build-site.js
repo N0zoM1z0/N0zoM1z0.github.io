@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 const { marked } = require('marked');
+const katex = require('katex');
 const Prism = require('prismjs');
 require('prismjs/components/prism-bash');
 require('prismjs/components/prism-json');
@@ -101,6 +102,8 @@ function readPosts() {
         date: parsed.data.date || '',
         categories: asArray(parsed.data.categories),
         tags: asArray(parsed.data.tags),
+        series: parsed.data.series || '',
+        seriesPart: Number(parsed.data.seriesPart || 0),
         project: parsed.data.project || '',
         markdown,
         excerpt: parsed.data.excerpt || makeExcerpt(markdown),
@@ -141,7 +144,39 @@ function renderMarkdown(markdown) {
     const languageLabel = normalized || 'text';
     return `<pre class="language-${escapeHtml(languageLabel)}" data-language="${escapeHtml(languageLabel)}"><code class="language-${escapeHtml(languageLabel)}">${highlighted}</code></pre>`;
   };
-  return marked.parse(markdown, { renderer });
+  return marked.parse(renderMath(markdown), { renderer });
+}
+
+function renderMath(markdown) {
+  const protectedBlocks = [];
+  const protect = match => {
+    const token = `@@PROTECTED_${protectedBlocks.length}@@`;
+    protectedBlocks.push(match);
+    return token;
+  };
+  let output = markdown
+    .replace(/```[\s\S]*?```/g, protect)
+    .replace(/`[^`\n]+`/g, protect);
+
+  output = output
+    .replace(/\$\$([\s\S]+?)\$\$/g, (_, expression) => renderKatex(expression, true))
+    .replace(/\\\[([\s\S]+?)\\\]/g, (_, expression) => renderKatex(expression, true))
+    .replace(/\\\(([\s\S]+?)\\\)/g, (_, expression) => renderKatex(expression, false))
+    .replace(/(^|[^\\$])\$([^\n$]+?)\$/g, (match, prefix, expression) => {
+      if (!/[\\_^{}]/.test(expression) && /\s/.test(expression.trim())) return match;
+      return `${prefix}${renderKatex(expression, false)}`;
+    });
+
+  return output.replace(/@@PROTECTED_(\d+)@@/g, (_, index) => protectedBlocks[Number(index)]);
+}
+
+function renderKatex(expression, displayMode) {
+  return katex.renderToString(String(expression).trim(), {
+    displayMode,
+    throwOnError: false,
+    strict: 'ignore',
+    trust: false
+  });
 }
 
 function articleBodyMarkdown(markdown) {
@@ -202,6 +237,7 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
   <meta name="twitter:card" content="summary">
   <title>${escapeHtml(title)}</title>
   <link rel="alternate" type="application/rss+xml" title="N0zoM1z0" href="/feed.xml">
+  <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
   <link rel="stylesheet" href="/assets/css/chirpy-like.css">
 </head>
 <body>
@@ -774,6 +810,37 @@ function relatedBlock(post, posts) {
       </section>`;
 }
 
+function seriesPosts(post, posts) {
+  if (!post.series) return [];
+  return posts
+    .filter(candidate => candidate.series === post.series)
+    .sort((a, b) => (a.seriesPart || 0) - (b.seriesPart || 0) || new Date(a.date) - new Date(b.date));
+}
+
+function seriesPartLabel(part) {
+  const numerals = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+  return numerals[part - 1] || String(part);
+}
+
+function seriesBlock(post, posts) {
+  const items = seriesPosts(post, posts);
+  if (items.length < 2) return '';
+  return `<nav class="series-card" aria-label="${escapeHtml(post.series)} series">
+        <div class="series-card-top">
+          <p class="eyebrow">Series</p>
+          <strong>${escapeHtml(post.series)}</strong>
+        </div>
+        <ol class="series-list">
+          ${items.map(item => `<li class="${item.slug === post.slug ? 'is-current' : ''}">
+            <a href="${item.url}">
+              <span>Part ${seriesPartLabel(item.seriesPart || items.indexOf(item) + 1)}</span>
+              ${escapeHtml(item.title.replace(/^Part\s+[IVX]+:\s*/i, ''))}
+            </a>
+          </li>`).join('')}
+        </ol>
+      </nav>`;
+}
+
 function postPage(post, posts) {
   const articleMarkdown = articleBodyMarkdown(post.markdown);
   const categories = post.categories
@@ -802,6 +869,7 @@ function postPage(post, posts) {
           </div>
           <div class="post-tags-inline">${tags}</div>
         </header>
+        ${seriesBlock(post, posts)}
         <div class="markdown-body">${renderMarkdown(articleMarkdown)}</div>
         ${relatedBlock(post, posts)}
       </article>`
@@ -903,6 +971,7 @@ function main() {
   fs.rmSync(outDir, { recursive: true, force: true });
   ensureDir(outDir);
   fs.cpSync(path.join(root, 'assets'), path.join(outDir, 'assets'), { recursive: true });
+  fs.cpSync(path.join(root, 'node_modules', 'katex', 'dist'), path.join(outDir, 'assets', 'vendor', 'katex'), { recursive: true });
 
   const routes = [
     ['', indexPage(posts)],
@@ -942,6 +1011,8 @@ function main() {
     readingMinutes: post.readingMinutes,
     categories: post.categories,
     tags: post.tags,
+    series: post.series,
+    seriesPart: post.seriesPart,
     content: post.searchable
   })));
   writeFeed(posts);

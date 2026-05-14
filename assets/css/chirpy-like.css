@@ -808,6 +808,66 @@ a:hover {
   padding: 0.22rem 0.65rem;
 }
 
+.series-card {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 12%, transparent), transparent 58%),
+    color-mix(in srgb, var(--panel) 94%, var(--accent));
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.35rem 2.6rem;
+}
+
+.series-card-top {
+  align-items: baseline;
+  display: flex;
+  gap: 0.7rem;
+}
+
+.series-card-top strong {
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+.series-list {
+  counter-reset: series;
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.series-list li {
+  margin: 0;
+}
+
+.series-list a {
+  align-items: center;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  color: var(--text);
+  display: grid;
+  gap: 0.28rem;
+  padding: 0.8rem 0.95rem;
+  text-decoration: none;
+}
+
+.series-list a:hover,
+.series-list .is-current a {
+  background: color-mix(in srgb, var(--accent) 11%, var(--panel));
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--border));
+}
+
+.series-list span {
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .markdown-body {
   padding: 2.2rem 2.6rem 3rem;
 }
@@ -860,6 +920,17 @@ a:hover {
 .markdown-body p,
 .markdown-body li {
   color: var(--text);
+}
+
+.markdown-body .katex {
+  font-size: 1.04em;
+}
+
+.markdown-body .katex-display {
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.25rem 0.1rem;
 }
 
 .markdown-body img {
