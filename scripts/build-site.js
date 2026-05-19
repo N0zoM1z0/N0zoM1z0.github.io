@@ -32,6 +32,9 @@ function escapeHtml(value = '') {
 
 function slugify(value = '') {
   return String(value)
+    .replace(/&amp;/g, '&')
+    .replace(/&(?:#39|apos);/g, "'")
+    .replace(/&quot;/g, '"')
     .replace(/<[^>]+>/g, '')
     .replace(/`+/g, '')
     .toLowerCase()

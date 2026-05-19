@@ -519,6 +519,13 @@ a:hover {
   padding: 3rem;
 }
 
+.page-shell::after {
+  content: "";
+  display: block;
+  grid-column: 1 / -1;
+  height: 3.5rem;
+}
+
 .content-pane {
   margin: 0 auto;
   max-width: 850px;
