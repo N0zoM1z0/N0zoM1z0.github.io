@@ -5,9 +5,13 @@ const { marked } = require('marked');
 const katex = require('katex');
 const Prism = require('prismjs');
 require('prismjs/components/prism-bash');
+require('prismjs/components/prism-c');
+require('prismjs/components/prism-cpp');
+require('prismjs/components/prism-diff');
 require('prismjs/components/prism-json');
 require('prismjs/components/prism-markdown');
 require('prismjs/components/prism-rust');
+require('prismjs/components/prism-solidity');
 require('prismjs/components/prism-toml');
 require('prismjs/components/prism-typescript');
 require('prismjs/components/prism-yaml');
@@ -59,6 +63,8 @@ function formatDate(value) {
 function stripMarkdown(markdown) {
   return markdown
     .replace(/^#\s+.+$/m, ' ')
+    .replace(/^\[\^[^\]]+\]:\s+.+$/gm, ' ')
+    .replace(/\[\^[^\]]+\]/g, ' ')
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/!\[[^\]]*]\([^)]+\)/g, ' ')
     .replace(/\[[^\]]+]\(([^)]+)\)/g, '$1')
@@ -147,7 +153,44 @@ function renderMarkdown(markdown) {
     const languageLabel = normalized || 'text';
     return `<pre class="language-${escapeHtml(languageLabel)}" data-language="${escapeHtml(languageLabel)}"><code class="language-${escapeHtml(languageLabel)}">${highlighted}</code></pre>`;
   };
-  return marked.parse(renderMath(markdown), { renderer });
+  return marked.parse(renderMath(renderFootnotes(markdown)), { renderer });
+}
+
+function renderFootnotes(markdown) {
+  const definitions = new Map();
+  const withoutDefinitions = markdown.replace(/^\[\^([^\]]+)\]:\s*(.+)$/gm, (_, label, text) => {
+    definitions.set(label, text.trim());
+    return '';
+  });
+  if (!definitions.size) return markdown;
+
+  const used = [];
+  const numbers = new Map();
+  const withRefs = withoutDefinitions.replace(/\[\^([^\]]+)\]/g, (match, label) => {
+    if (!definitions.has(label)) return match;
+    if (!numbers.has(label)) {
+      numbers.set(label, numbers.size + 1);
+      used.push(label);
+    }
+    const id = slugify(label);
+    return `<sup class="footnote-ref" id="fnref-${id}"><a href="#fn-${id}">${numbers.get(label)}</a></sup>`;
+  });
+
+  if (!used.length) return withoutDefinitions;
+  const footnotes = `<ol class="footnotes-list">
+${used.map(label => {
+    const id = slugify(label);
+    return `<li id="fn-${id}">${formatFootnote(definitions.get(label))} <a class="footnote-backref" href="#fnref-${id}" aria-label="Back to reference">↩</a></li>`;
+  }).join('\n')}
+</ol>`;
+
+  return `${withRefs.trim()}\n\n${footnotes}`;
+}
+
+function formatFootnote(text) {
+  return escapeHtml(text)
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1">$1</a>');
 }
 
 function renderMath(markdown) {
