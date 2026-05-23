@@ -283,6 +283,10 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
   <meta name="twitter:card" content="summary">
   <title>${escapeHtml(title)}</title>
   <link rel="alternate" type="application/rss+xml" title="N0zoM1z0" href="/feed.xml">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (!location.hash) window.scrollTo(0, 0);
+  </script>
   <link rel="stylesheet" href="/assets/vendor/katex/katex.min.css">
   <link rel="stylesheet" href="/assets/css/chirpy-like.css">
 </head>
@@ -482,6 +486,7 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
     };
     const tocTargets = tocLinks.map(tocTargetFor).filter(Boolean);
     if (tocLinks.length && tocTargets.length) {
+      let tocFrame = null;
       const setActiveToc = () => {
         const marker = window.scrollY + window.innerHeight * 0.24;
         let active = tocTargets[0];
@@ -495,9 +500,16 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
           if (isActive) link.scrollIntoView({ block: 'nearest' });
         });
       };
+      const scheduleActiveToc = () => {
+        if (tocFrame) return;
+        tocFrame = requestAnimationFrame(() => {
+          tocFrame = null;
+          setActiveToc();
+        });
+      };
       setActiveToc();
-      window.addEventListener('scroll', setActiveToc, { passive: true });
-      window.addEventListener('resize', setActiveToc);
+      window.addEventListener('scroll', scheduleActiveToc, { passive: true });
+      window.addEventListener('resize', scheduleActiveToc);
     }
   </script>
 
@@ -509,18 +521,36 @@ function layout({ title, description, active = 'home', content, posts = [], toc 
       document.body.appendChild(cursorEffect);
     }
   </script>
-  <script src="/assets/live2dw/lib/L2Dwidget.min.js"></script>
   <script>
-    L2Dwidget.init({
-      pluginRootPath: '/assets/live2dw/',
-      pluginJsPath: 'lib/',
-      pluginModelPath: 'assets/',
-      tagMode: false,
-      log: false,
-      model: { jsonPath: '/assets/live2dw/assets/z16.model.json' },
-      display: { position: 'right', width: 160, height: 256, hOffset: 24, vOffset: -20 },
-      mobile: { show: false }
-    });
+    (() => {
+      const canShowLive2D = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)').matches;
+      if (!canShowLive2D) return;
+      const initLive2D = () => {
+        const script = document.createElement('script');
+        script.src = '/assets/live2dw/lib/L2Dwidget.min.js';
+        script.async = true;
+        script.onload = () => {
+          if (!window.L2Dwidget) return;
+          L2Dwidget.init({
+            pluginRootPath: '/assets/live2dw/',
+            pluginJsPath: 'lib/',
+            pluginModelPath: 'assets/',
+            tagMode: false,
+            log: false,
+            model: { jsonPath: '/assets/live2dw/assets/z16.model.json' },
+            display: { position: 'right', width: 160, height: 256, hOffset: 24, vOffset: -20 },
+            mobile: { show: false }
+          });
+        };
+        document.body.appendChild(script);
+      };
+      const scheduleLive2D = () => {
+        if ('requestIdleCallback' in window) requestIdleCallback(initLive2D, { timeout: 2500 });
+        else window.setTimeout(initLive2D, 1200);
+      };
+      if (document.readyState === 'complete') scheduleLive2D();
+      else window.addEventListener('load', scheduleLive2D, { once: true });
+    })();
   </script>
   <script>
     const backToTop = document.querySelector('.back-to-top');
