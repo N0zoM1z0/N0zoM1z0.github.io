@@ -9,7 +9,7 @@
   "dependencies": {
     "gray-matter": "^2.1.1",
     "katex": "^0.16.46",
-    "marked": "^4.3.0",
+    "marked": "^18.0.5",
     "prismjs": "^1.30.0"
   }
 }
